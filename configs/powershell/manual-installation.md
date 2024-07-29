@@ -1,90 +1,107 @@
 # Manual Installation Guide
 
-This guide will walk you through the process of manually installing and configuring various PowerShell modules and Oh-My-Posh for a customized terminal experience.
+This guide provides instructions for manually installing and configuring the components used in the PowerShell setup script. Follow these steps to set up your PowerShell environment with the necessary tools and modules.
 
-## Step 1: Locate or Create Your PowerShell Profile
+## 1. Check for Administrative Privileges
 
-First, you need to find your PowerShell profile. Open PowerShell and run the following command:
+Ensure that you are running the PowerShell session as an administrator. Some installations require elevated privileges.
 
-```powershell
-$PROFILE
-```
+## 2. Install Chocolatey
 
-- If the command returns a path, note it down. This is the location of your PowerShell profile script.
-- If the command does not return a path, you need to create a new PowerShell profile. You can create it by running:
+1. **Download and Install Chocolatey**
 
-```powershell
-New-Item -Path $PROFILE -ItemType File -Force
-```
+    Open PowerShell as an administrator and execute the following command:
 
-## Step 2: Install PowerShell Modules
+    ```powershell
+    Set-ExecutionPolicy Bypass -Scope Process -Force
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+    iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+    ```
 
-Next, install a few essential PowerShell modules. Run the following commands in your PowerShell terminal:
+2. **Verify Installation**
+
+    To check if Chocolatey is installed correctly, run:
+
+    ```powershell
+    choco --version
+    ```
+
+## 3. Install PowerShell Modules
+
+### Install Modules Using PowerShell
+
+Execute the following commands in PowerShell to install the required modules:
 
 ```powershell
 Install-Module -Name PSFzf -Scope CurrentUser -Force
 Install-Module -Name PSReadLine -AllowPrerelease -Scope CurrentUser -Force -SkipPublisherCheck
 Install-Module -Name Terminal-Icons -Repository PSGallery -Force
+Install-Module -Name PowerType -AllowPrerelease -Force
 ```
 
-## Step 3: Install Oh-My-Posh
+### Install Oh-My-Posh Using Chocolatey
 
-Oh-My-Posh can be installed using different package managers. Choose your preferred package manager and follow the corresponding instructions:
+1. **Install Oh-My-Posh**
 
-- **winget**
+    Run the following command in PowerShell to install Oh-My-Posh:
 
-  ```powershell
-  winget install JanDeDobbeleer.OhMyPosh -s winget
-  ```
+    ```powershell
+    choco install oh-my-posh -y -f
+    ```
 
-- **scoop**
+## 4. Configure PowerShell Profile
 
-  ```powershell
-  scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
-  ```
+1. **Locate PowerShell Profile**
 
-- **chocolatey**
+    Check if your PowerShell profile exists:
 
-  ```powershell
-  choco install oh-my-posh
-  ```
+    ```powershell
+    $ProfilePath = $PROFILE.CurrentUserAllHosts
+    ```
 
-- **manual**
-  ```powershell
-  Set-ExecutionPolicy Bypass -Scope Process -Force
-  Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://ohmyposh.dev/install.ps1'))
-  ```
+    If the file does not exist, create it:
 
-## Step 4: Configure Your PowerShell Profile
+    ```powershell
+    if (-not (Test-Path -Path $ProfilePath)) {
+        New-Item -Path $ProfilePath -ItemType File -Force | Out-Null
+    }
+    ```
 
-Now, configure your PowerShell profile with the necessary settings. First, download the configuration files from the provided links.
+2. **Download and Configure Profile Script**
 
-- **PowerShell Profile Script**:
-  [profile.ps1](https://github.com/pyyupsk/dotfiles/blob/main/configs/powershell/profile.ps1)
+    Download the profile script and save it to your profile path:
 
-- **Oh-My-Posh Theme File**:
-  [pyyupsk.omp.json](https://github.com/pyyupsk/dotfiles/blob/main/configs/powershell/pyyupsk.omp.json)
+    ```powershell
+    $profileScript = "https://github.com/pyyupsk/dotfiles/raw/main/configs/powershell/profile.ps1"
+    Invoke-WebRequest -Uri $profileScript -OutFile $ProfilePath -UseBasicParsing | Out-Null
+    ```
 
-### Add Configuration to Your PowerShell Profile
+## 5. Configure Oh-My-Posh Theme
 
-1. Open your PowerShell profile script in a text editor. You can do this by running:
+1. **Find or Create Theme Path**
 
-   ```powershell
-   code $PROFILE
-   ```
+    Ensure that the theme directory exists:
 
-2. Copy the contents of the `profile.ps1` file from the GitHub link and paste them into your PowerShell profile script.
+    ```powershell
+    $themePath = "$env:POSH_THEMES_PATH\pyyupsk.omp.json"
+    if (-not (Test-Path -Path $env:POSH_THEMES_PATH)) {
+        New-Item -Path $env:POSH_THEMES_PATH -ItemType Directory -Force | Out-Null
+    }
+    ```
 
-3. Set the path for the Oh-My-Posh theme file. Add the following line to your PowerShell profile script, replacing `$themePath` with the path where you saved the `pyyupsk.omp.json` file:
+2. **Download and Save Theme Script**
 
-   ```powershell
-   $themePath = "$env:POSH_THEMES_PATH\pyyupsk.omp.json"
-   ```
+    Download the theme script and save it to the theme path:
 
-4. Save and close the PowerShell profile script.
+    ```powershell
+    $themeScript = "https://github.com/pyyupsk/dotfiles/raw/main/configs/powershell/pyyupsk.omp.json"
+    Invoke-WebRequest -Uri $themeScript -OutFile $themePath -UseBasicParsing | Out-Null
+    ```
 
-## Step 5: Restart Your Terminal
+## 6. Restart PowerShell
 
-Finally, restart your PowerShell terminal to apply the changes.
+To apply all changes, restart your PowerShell session:
 
-You should now have a customized PowerShell terminal with enhanced features and a stylish prompt. Enjoy your new setup!
+```powershell
+Start-Process pwsh -NoNewWindow -Wait
+```

@@ -1,6 +1,6 @@
 # ファース dotfiles
 
-Welcome to ファース dotfiles! This repository contains various configuration files and scripts to set up customized terminal and PowerShell environments. Please read through the instructions and warnings before proceeding.
+Welcome to the **ファース dotfiles** repository! This collection includes configuration files and scripts to personalize and enhance your terminal and PowerShell environments. Please review the instructions and warnings carefully before making any changes.
 
 <div align="center">
     <table>
@@ -16,11 +16,11 @@ Welcome to ファース dotfiles! This repository contains various configuration
 </div>
 
 > [!WARNING]
-> Use caution when installing or modifying these configurations, especially if you are not familiar with the tools and technologies involved. Incorrect configurations could affect your system's performance or functionality.
+> Proceed with caution when installing or modifying these configurations, especially if you are unfamiliar with the tools and technologies involved. Incorrect configurations could impact your system's performance or functionality.
 
 ## Configurations
 
-- [Powershell](configs/powershell)
+- [PowerShell](configs/powershell)
 - [Terminal](configs/terminal)
 - [VS Code](configs/vscode)
 - [Discord](configs/discord)
@@ -28,60 +28,60 @@ Welcome to ファース dotfiles! This repository contains various configuration
 
 ## Requirements
 
-### Powershell Configuration
+### PowerShell Configuration
 
-To use the PowerShell configuration, ensure you have the following prerequisites:
+To use the PowerShell configuration, ensure you have:
 
-- **Windows Terminal**: Preferred terminal emulator for PowerShell.
-- **PowerShell 7**: For enhanced scripting capabilities.
-- **Nerd Font**: Recommended for icons in the terminal prompt.
+- **Windows Terminal**: Recommended terminal emulator for PowerShell.
+- **PowerShell 7**: For advanced scripting capabilities.
+- **Nerd Font**: Essential for displaying icons in the terminal prompt.
 
-Refer to [Powershell README](configs/powershell) for detailed installation instructions.
+Refer to the [PowerShell README](configs/powershell) for detailed setup instructions.
 
 ### Terminal Configuration
 
-For configuring your terminal, you need:
+For terminal customization, you will need:
 
-- A terminal emulator capable of importing color schemes, like Windows Terminal or iTerm.
-- [Nerd Fonts](https://www.nerdfonts.com/font-downloads): Install one to display icons in the prompt.
+- A terminal emulator that supports color schemes, such as Windows Terminal or iTerm.
+- [Nerd Fonts](https://www.nerdfonts.com/font-downloads): Install a Nerd Font to display icons properly.
 
-Refer to [Terminal README](configs/terminal) for more information.
+Refer to the [Terminal README](configs/terminal) for complete setup instructions.
 
 ### VS Code Configuration
 
-To use the VS Code configuration, you need:
+To apply the VS Code configuration, you will need:
 
-- **Visual Studio Code**: Text editor and IDE.
-- **Npm**: Required for building the theme extension (or other package managers).
+- **Visual Studio Code**: The primary text editor and IDE.
+- **npm**: Required for building the theme extension (or another package manager of your choice).
 
-Refer to [VS Code README](configs/vscode) for detailed installation instructions.
+Refer to the [VS Code README](configs/vscode) for comprehensive installation details.
 
 ### Discord Configuration
 
-In discord configuration it just a theme for discord.
+For Discord customization:
 
-- [Discord](https://discord.com/): Required, Because it is a discord client.
-- [Vencord](https://vencord.dev/) or [BetterDiscord](https://betterdiscord.app/): Required for installing the theme, If you use Discord in the desktop.
-- [Stylus](https://github.com/openstyles/stylus): Required for installing the theme, If you use Discord in the browser.
+- **Discord**: Required as the client application.
+- **Vencord** or **BetterDiscord**: Needed for theme installation on the desktop client.
+- **Stylus**: Needed for theme installation if using Discord in the browser.
 
-Refer to [Discord README](configs/discord) for detailed installation instructions.
+Refer to the [Discord README](configs/discord) for specific instructions.
 
 ### User Styles
 
-User styles are used to customize the user interface of websites. They are usually installed as browser extensions.
+User styles allow you to customize the appearance of websites:
 
-- [Stylus](https://github.com/openstyles/stylus): Required for installing the theme.
+- **Stylus**: Required browser extension for installing user styles.
 
-Refer to [User Styles README](https://github.com/pyyupsk/Everblush/tree/main/userstyles/styles) for detailed installation instructions.
+Refer to the [User Styles README](https://github.com/pyyupsk/Everblush/tree/main/userstyles/styles) for detailed setup instructions.
 
 ## How to Use
 
-Each directory contains a README.md file with detailed instructions on how to set up and use the configurations. Please read these files carefully before proceeding with installation or modifications.
+Each directory includes a `README.md` file with detailed setup and usage instructions. Please read these files carefully before proceeding with any installations or modifications.
 
 ## Additional Information
 
-Feel free to customize the configuration files to suit your preferences. If you encounter any issues or have questions, please create an issue in this repository, and we will be happy to assist you.
+Feel free to adjust the configuration files to your preferences. If you encounter any issues or have questions, please open an issue in this repository, and we will assist you promptly.
 
 ---
 
-For any questions or feedback, you can reach out to [pyyupsk](https://github.com/pyyupsk).
+For questions or feedback, reach out to [pyyupsk](https://github.com/pyyupsk).

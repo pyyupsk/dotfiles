@@ -1,3 +1,7 @@
+# Measure fnm env execution time
+Measure-Command { fnm env --use-on-cd | Out-String | Invoke-Expression }
+
+# Import essential modules and set options
 Import-Module PSReadLine
 Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
@@ -5,26 +9,35 @@ Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 Import-Module PSFzf
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+r'
 
-Import-Module Terminal-Icons
+# Import Terminal-Icons module asynchronously
+Start-Job { Import-Module Terminal-Icons }
 
+# Enable PowerType
 Enable-PowerType
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin -PredictionViewStyle ListView
 
+# Set console encoding
 [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
+# Initialize Oh-My-Posh asynchronously
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\pyyupsk.omp.json" | Invoke-Expression
 
+# Clear console on startup
+Clear-Host
+
+# Define aliases
 Set-Alias lt "tree"
 Set-Alias ll "ls"
 Set-Alias l "ls"
 Set-Alias nf "New-Item -ItemType File -Force"
-Set-Alias nd "New-Item -ItemType Directory -Force"
-Set-Alias rm "Remove-Item -Force -Recurse"
-Set-Alias rd "Remove-Item -Force -Recurse"
+Set-Alias nd mkdir
+Set-Alias rm "Remove-Item -Force"
+Set-Alias rd "Remove-Item -Recurse -Force"
 Set-Alias vim "nvim"
 Set-Alias c "Clear-Host"
 Set-Alias g "git"
 
+# Define functions
 function search {
     param(
         [Parameter(Mandatory = $true)]
@@ -36,7 +49,7 @@ function search {
 }
 
 function work {
-    Set-Location "E:\Workspace" | Out-Null
+    Set-Location "E:\Coding" | Out-Null
 }
 
 function update-posh {

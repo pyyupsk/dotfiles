@@ -5,10 +5,10 @@
  * @version 0.0.1
  */
 
-@import url('https://mwittrien.github.io/BetterDiscordAddons/Themes/DiscordRecolor/DiscordRecolor.css');
-@import url('https://mwittrien.github.io/BetterDiscordAddons/Themes/EmojiReplace/base/Apple.css');
-@import url('https://mwittrien.github.io/BetterDiscordAddons/Themes/SettingsModal/SettingsModal.css');
-@import url('https://discordstyles.github.io/RadialStatus/dist/RadialStatus.css');
+@import url("https://mwittrien.github.io/BetterDiscordAddons/Themes/DiscordRecolor/DiscordRecolor.css");
+@import url("https://mwittrien.github.io/BetterDiscordAddons/Themes/EmojiReplace/base/Apple.css");
+@import url("https://mwittrien.github.io/BetterDiscordAddons/Themes/SettingsModal/SettingsModal.css");
+@import url("https://discordstyles.github.io/RadialStatus/dist/RadialStatus.css");
 @import url("https://dyzean.github.io/Tokyo-Night/src/addons/syntax-highlight.css");
 
 :root {
@@ -17,7 +17,6 @@
 
     /* Discord Recolor */
     --settingsicons: 1;
-
 
     --accentcolor: 103, 176, 232;
     --accentcolor2: 103, 176, 232;

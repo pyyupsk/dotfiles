@@ -1,0 +1,9 @@
+{
+  "name": "dotfiles",
+  "scripts": {
+    "format": "prettier --write configs"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  }
+}
