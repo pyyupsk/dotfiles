@@ -2,6 +2,9 @@
 
 This repository contains my personal dotfiles and configuration scripts for a customized development environment. It includes configurations for Zsh, aliases, functions, and various tools to enhance productivity.
 
+> [!NOTE]
+> This repository is under development, and more configurations will be added in the future.
+
 ## Table of Contents
 
 - [Dotfiles Repository](#dotfiles-repository)
@@ -9,8 +12,6 @@ This repository contains my personal dotfiles and configuration scripts for a cu
   - [Installation](#installation)
   - [Usage](#usage)
     - [Aliases](#aliases)
-    - [Functions](#functions)
-  - [Components](#components)
   - [License](#license)
 
 ## Installation
@@ -47,27 +48,10 @@ source ~/.zshrc
 
 ### Aliases
 
-You can use the following aliases for common tasks:
+You can use the following aliases for common tasks. To view more aliases, type `?` in your terminal.
 
-- `c`: Clear the terminal
-- `mkdir`: Create directories with parents
-- `gi`: Initialize a new Git repository
-- `gs`: Show the Git status
-
-### Functions
-
-The repository includes several useful functions, such as:
-
-- `command_not_found_handler`: Suggests packages for commands that are not found.
-- `in`: Installs packages using the appropriate package manager.
-
-## Components
-
-- **Zsh Configuration**: Custom configurations for Zsh, including themes and plugins.
-- **Aliases**: A collection of terminal aliases for common commands.
-- **Functions**: Custom functions to enhance terminal usage.
-- **Health Check Script**: A script to check system health and status.
-- **Miscellaneous**: Additional scripts and configurations for tools like Zoxide and Pokemon Color Scripts.
+> [!WARNING]
+> Ensure that you have backed up your existing configuration files before running the setup scripts to prevent any data loss.
 
 ## License
 
