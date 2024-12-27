@@ -44,11 +44,10 @@ clone_or_update https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTO
 clone_or_update https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
 
 # Install Pokemon Color Scripts
-clone_or_update https://gitlab.com/phoneybadger/pokemon-colorscripts.git "pokemon-colorscripts" && \
-sh pokemon-colorscripts/install.sh
+$PACKAGE_MANAGER -S --noconfirm pokemon-colorscripts-git
 
 # Install Powerlevel10k
-$PACKAGE_MANAGER -S --noconfirm zsh-theme-powerlevel10k
+$PACKAGE_MANAGER -S --noconfirm zsh-theme-powerlevel10k-git
 
 echo "System packages installation completed!"
 

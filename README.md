@@ -28,14 +28,13 @@ To set up the dotfiles on your system, follow these steps:
    Make sure to run the `install/install-packages.sh` script to install necessary packages:
 
    ```bash
-   bash install/install-packages.sh
+   bash ~/.dotfiles/install/install-packages.sh
    ```
 
 3. **Run the setup script:**
 
    ```bash
-   cd ~/.dotfiles
-   bash install/setup.sh
+   bash ~/.dotfiles/install/setup.sh
    ```
 
 ## Usage
