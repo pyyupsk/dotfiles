@@ -47,5 +47,8 @@ clone_or_update https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_C
 clone_or_update https://gitlab.com/phoneybadger/pokemon-colorscripts.git "pokemon-colorscripts" && \
 sh pokemon-colorscripts/install.sh
 
+# Install Powerlevel10k
+$PACKAGE_MANAGER -S --noconfirm zsh-theme-powerlevel10k
+
 echo "System packages installation completed!"
 
