@@ -15,8 +15,8 @@ done
 
 # Update and install system packages
 sudo "$PACKAGE_MANAGER" -Syu --noconfirm && sudo "$PACKAGE_MANAGER" -S --noconfirm \
-    git base-devel \  # base packages
-    zsh curl wget aria2 fzf eza bat zoxide # zsh required
+    git base-devel \
+    zsh curl wget aria2 fzf eza bat zoxide
 
 # Install Oh My Zsh
 aria2c -x 16 -s 16 https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh && \

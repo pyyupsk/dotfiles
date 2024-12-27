@@ -1,6 +1,7 @@
 # Terminal Operations
 alias c='clear'
 alias mkdir='mkdir -p'
+alias figclip='figletclip'
 
 # File Listing
 alias l='eza -lh'
@@ -47,3 +48,4 @@ alias '?'='alias_help'
 alias cat='bat'
 alias health='sudo ~/.local/share/bin/healthcheck.sh'
 alias wget='aria2c -x 16 -s 16'
+alias code='cursor'

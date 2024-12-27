@@ -122,3 +122,8 @@ function alias_help() {
     echo -e "${GREEN}${PACKAGE_ICON} Health Check${NC}"
     echo -e "${PURPLE}└─${NC} health${YELLOW}→${NC} Run health check script\n"
 }
+
+# Function to store figlet output to clipboard
+function figletclip(){
+    figlet -f pagga "$1" | cliphist store;
+}
