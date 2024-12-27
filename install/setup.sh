@@ -20,13 +20,13 @@ create_symlink() {
 
 # Symlink files/directories
 declare -A SYMLINKS=(
-    ["$DOTFILES_DIR/.zshrc"]="$HOME/.zshrc"
-    ["$DOTFILES_DIR/.config/zsh/aliases.zsh"]="$HOME/.config/zsh/aliases.zsh"
-    ["$DOTFILES_DIR/.config/zsh/functions.zsh"]="$HOME/.config/zsh/functions.zsh"
-    ["$DOTFILES_DIR/.config/zsh/misc.zsh"]="$HOME/.config/zsh/misc.zsh"
-    ["$DOTFILES_DIR/.config/zsh/plugins.zsh"]="$HOME/.config/zsh/plugins.zsh"
-    ["$DOTFILES_DIR/.config/zsh/theme.zsh"]="$HOME/.config/zsh/theme.zsh"
-    ["$DOTFILES_DIR/.local/share/bin/healthcheck.sh"]="$HOME/.local/share/bin/healthcheck.sh"
+    ["$DOTFILES_DIR/.dotfiles/.zshrc"]="$HOME/.zshrc"
+    ["$DOTFILES_DIR/.dotfiles/.config/zsh/aliases.zsh"]="$HOME/.config/zsh/aliases.zsh"
+    ["$DOTFILES_DIR/.dotfiles/.config/zsh/functions.zsh"]="$HOME/.config/zsh/functions.zsh"
+    ["$DOTFILES_DIR/.dotfiles/.config/zsh/misc.zsh"]="$HOME/.config/zsh/misc.zsh"
+    ["$DOTFILES_DIR/.dotfiles/.config/zsh/plugins.zsh"]="$HOME/.config/zsh/plugins.zsh"
+    ["$DOTFILES_DIR/.dotfiles/.config/zsh/theme.zsh"]="$HOME/.config/zsh/theme.zsh"
+    ["$DOTFILES_DIR/.dotfiles/.local/share/bin/healthcheck.sh"]="$HOME/.local/share/bin/healthcheck.sh"
 )
 
 # Create necessary directories and symlinks
@@ -44,4 +44,3 @@ for i in {3..1}; do
     sleep 1
 done
 exec zsh
-
