@@ -10,8 +10,6 @@ This repository contains my personal dotfiles and configuration scripts for a cu
 - [Dotfiles Repository](#dotfiles-repository)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
-  - [Usage](#usage)
-    - [Aliases](#aliases)
   - [License](#license)
 
 ## Installation
@@ -28,26 +26,14 @@ To set up the dotfiles on your system, follow these steps:
    Make sure to run the `install/install-packages.sh` script to install necessary packages:
 
    ```bash
-   bash ~/.dotfiles/install/install-packages.sh
+   sudo sh ~/.dotfiles/install/install-packages.sh
    ```
 
 3. **Run the setup script:**
 
    ```bash
-   bash ~/.dotfiles/install/setup.sh
+   sh ~/.dotfiles/install/setup.sh
    ```
-
-## Usage
-
-After installation, you can start using the configured aliases and functions in your terminal. Open a new terminal session or source your `.zshrc` file to apply the changes:
-
-```bash
-source ~/.zshrc
-```
-
-### Aliases
-
-You can use the following aliases for common tasks. To view more aliases, type `?` in your terminal.
 
 > [!WARNING]
 > Ensure that you have backed up your existing configuration files before running the setup scripts to prevent any data loss.

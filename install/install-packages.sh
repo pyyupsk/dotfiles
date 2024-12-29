@@ -15,12 +15,13 @@ done
 
 # Update and install system packages
 sudo "$PACKAGE_MANAGER" -Syu --noconfirm && sudo "$PACKAGE_MANAGER" -S --noconfirm \
-    git base-devel \
-    zsh curl wget aria2 fzf eza bat zoxide
+    git base-devel ghostty \
+    zsh curl wget aria2 fzf eza bat zoxide \
+    wf-recorder \
 
 # Install Oh My Zsh
-aria2c -x 16 -s 16 https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh && \
-sh install.sh && rm install.sh
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+rm install.sh
 
 # Define ZSH_CUSTOM if not already set
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
@@ -50,4 +51,3 @@ $PACKAGE_MANAGER -S --noconfirm pokemon-colorscripts-git
 $PACKAGE_MANAGER -S --noconfirm zsh-theme-powerlevel10k-git
 
 echo "System packages installation completed!"
-

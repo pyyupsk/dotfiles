@@ -20,13 +20,21 @@ create_symlink() {
 
 # Symlink files/directories
 declare -A SYMLINKS=(
+    # Zsh
     ["$DOTFILES_DIR/.dotfiles/.zshrc"]="$HOME/.zshrc"
+    ["$DOTFILES_DIR/.dotfiles/.p10k.zsh"]="$HOME/.p10k.zsh"
     ["$DOTFILES_DIR/.dotfiles/.config/zsh/aliases.zsh"]="$HOME/.config/zsh/aliases.zsh"
     ["$DOTFILES_DIR/.dotfiles/.config/zsh/functions.zsh"]="$HOME/.config/zsh/functions.zsh"
     ["$DOTFILES_DIR/.dotfiles/.config/zsh/misc.zsh"]="$HOME/.config/zsh/misc.zsh"
     ["$DOTFILES_DIR/.dotfiles/.config/zsh/plugins.zsh"]="$HOME/.config/zsh/plugins.zsh"
     ["$DOTFILES_DIR/.dotfiles/.config/zsh/theme.zsh"]="$HOME/.config/zsh/theme.zsh"
+
+    # Ghostty
+    ["$DOTFILES_DIR/.dotfiles/.config/ghostty/config"]="$HOME/.config/ghostty/config"
+
+    # Binaries
     ["$DOTFILES_DIR/.dotfiles/.local/share/bin/healthcheck.sh"]="$HOME/.local/share/bin/healthcheck.sh"
+    ["$DOTFILES_DIR/.dotfiles/.local/share/bin/screenrecord.sh"]="$HOME/.local/share/bin/screenrecord.sh"
 )
 
 # Create necessary directories and symlinks
@@ -35,12 +43,8 @@ for src in "${!SYMLINKS[@]}"; do
     create_symlink "$src" "${SYMLINKS[$src]}"
 done
 
-# Final message
-echo "Dotfiles setup is complete, We'll reload zsh in 3 seconds"
+# Make zsh the default shell
+chsh -s /bin/zsh
 
-# Display a countdown before reloading zsh
-for i in {3..1}; do
-    echo "Reloading zsh in $i..."
-    sleep 1
-done
-exec zsh
+# Final message
+echo "Dotfiles setup is complete, please log out and log back in for the changes to take effect."
