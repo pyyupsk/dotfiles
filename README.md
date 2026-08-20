@@ -1,45 +1,55 @@
 # Dotfiles
 
-Personal configuration, organized by tool. Managed with plain symlinks - no
-external tools required (no stow/chezmoi).
+Personal configuration, organized by tool and managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
 ## Layout
 
+Each package directory mirrors your `$HOME` layout exactly. Running `stow <pkg>`
+symlinks every file inside into place.
+
 ```
 dotfiles/
-├── README.md          this file
-├── install.sh         creates all symlinks
-├── zsh/
-│   ├── .zshrc         entry point: sources every module in ~/.zshrc.d
-│   └── modules/       one file per concern, numbered for load order
+├── README.md           this file
+├── zsh/                package: zsh
+│   ├── .zshrc          entry point: sources every file in ~/.zshrc.d
+│   ├── .zshrc.d/       one module per concern, numbered for load order
+│   └── .p10k.zsh       powerlevel10k config
 ├── git/
-│   └── .gitconfig     git identity, signing, aliases
+│   └── .gitconfig      git identity, SSH signing, pager
 ├── mise/
-│   └── config.toml    global tool versions (node, python, rust)
+│   └── .config/mise/   global tool versions (node, python, rust)
 ├── opencode/
-│   └── tui.json       opencode theme
+│   └── .config/opencode/  opencode theme
 └── ssh/
-    └── config         ssh host shortcuts
+    └── .ssh/           ssh host shortcuts
 ```
 
 ## zsh modules
 
 | File | Purpose |
 |------|---------|
-| `10-env.zsh`      | PATH / environment variables |
-| `20-mise.zsh`     | mise version manager integration |
-| `30-plugins.zsh`  | completions, autosuggestions, fzf |
-| `40-aliases.zsh`  | ls/cat/clear replacements (eza, bat) |
+| `10-env.zsh`        | PATH, locale |
+| `20-mise.zsh`       | mise version manager integration |
+| `30-plugins.zsh`    | completions, autosuggestions, fzf |
+| `40-aliases.zsh`    | ls/cat/clear replacements (eza, bat) |
 | `50-navigation.zsh` | cd aliases + zoxide |
-| `60-git.zsh`      | git command aliases |
-| `70-headroom.zsh` | tool-specific aliases (oc) |
-| `90-syntax.zsh`   | syntax highlighting (must load last) |
+| `60-git.zsh`        | git command aliases |
+| `70-headroom.zsh`   | tool-specific aliases (oc) |
+| `80-prompt.zsh`     | powerlevel10k theme |
+| `90-syntax.zsh`     | syntax highlighting (must load last) |
 
 ## Install
 
 ```sh
-./install.sh
+stow zsh git mise opencode ssh   # create all symlinks
 ```
 
-This symlinks each config into its home location. To remove, delete the
-symlinks (originals stay safe in this repo).
+### Common stow commands
+
+```sh
+stow zsh            # install one package
+stow -D zsh         # remove a package's symlinks
+stow --adopt zsh    # overwrite existing files with package version
+stow -n zsh         # dry run
+stow -t ~ -d ~/dotfiles zsh  # explicit target/dir
+```
