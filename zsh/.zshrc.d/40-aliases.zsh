@@ -10,3 +10,4 @@ alias cat='bat'
 
 # clear
 alias c='clear'
+alias cc='claude'
