@@ -1,88 +1,25 @@
 #!/usr/bin/env python3
-"""Test opencode zen models and update whitelist with free ones."""
+"""Update opencode whitelist with models that are free on Zen, per models.dev pricing."""
 
 import json
 import subprocess
 import sys
-import time
 
-API_BASE = "https://opencode.ai/zen/v1"
+MODELS_DEV_URL = "https://models.dev/api.json"
 CONFIG_PATH = "/home/pyyupsk/.config/opencode/opencode.json"
-AUTH_PATH = "/home/pyyupsk/.local/share/opencode/auth.json"
-TIMEOUT = 30
-MINIMAL_MESSAGES = [{"role": "user", "content": "hi"}]
-
-# Models known to be free from Zen docs
-FREE_MODELS = [
-    "big-pickle",
-    "mimo-v2.5-free",
-    "ling-3.0-flash-fin-free",
-    "muse-spark-1.3-contributor-free",
-    "nemotron-3-ultra-free",
-    "nemotron-3.5-lightning-free",
-]
 
 
-def get_api_key():
-    with open(AUTH_PATH, "r") as f:
-        auth = json.load(f)
-    return auth.get("opencode", {}).get("key", "")
-
-
-def curl_get(url, api_key):
+def fetch_free_models():
     result = subprocess.run(
-        ["curl", "-s", "-w", "\n%{http_code}", url, "-H", f"Authorization: Bearer {api_key}"],
-        capture_output=True, text=True, timeout=TIMEOUT
+        ["curl", "-s", MODELS_DEV_URL], capture_output=True, text=True, timeout=30
     )
-    lines = result.stdout.rsplit("\n", 1)
-    if len(lines) == 2:
-        body, code = lines
-        return json.loads(body), int(code)
-    return None, 0
-
-
-def curl_post(url, data, api_key):
-    try:
-        result = subprocess.run(
-            ["curl", "-s", "-w", "\n%{http_code}", "-X", "POST", url,
-             "-H", "Content-Type: application/json",
-             "-H", f"Authorization: Bearer {api_key}",
-             "-d", json.dumps(data)],
-            capture_output=True, text=True, timeout=TIMEOUT
-        )
-        lines = result.stdout.rsplit("\n", 1)
-        if len(lines) == 2:
-            body, code = lines
-            try:
-                return json.loads(body), int(code)
-            except json.JSONDecodeError:
-                return body, int(code)
-    except subprocess.TimeoutExpired:
-        return None, 408
-    return None, 0
-
-
-def fetch_models(api_key):
-    data, code = curl_get(f"{API_BASE}/models", api_key)
-    if code == 200 and data:
-        return [m["id"] for m in data.get("data", [])]
-    return []
-
-
-def test_model(model_id, api_key):
-    payload = {
-        "model": model_id,
-        "messages": MINIMAL_MESSAGES,
-        "max_tokens": 1,
-    }
-    _, code = curl_post(f"{API_BASE}/chat/completions", payload, api_key)
-    if code == 200:
-        return True
-    elif code in (402, 403, 429):
-        return False
-    elif code == 408:
-        return None  # timeout
-    return None
+    data = json.loads(result.stdout)
+    models = data.get("opencode", {}).get("models", {})
+    return [
+        model_id
+        for model_id, model in models.items()
+        if model.get("cost", {}).get("input") == 0 and model.get("cost", {}).get("output") == 0
+    ]
 
 
 def update_config(free_models):
@@ -97,55 +34,19 @@ def update_config(free_models):
 
 
 def main():
-    force = "--force" in sys.argv
-    api_key = get_api_key()
-    if not api_key:
-        print("Error: No API key found in auth.json")
+    print("Fetching model pricing from models.dev...")
+    free = fetch_free_models()
+
+    if not free:
+        print("No free models found.")
         sys.exit(1)
 
-    if force:
-        print("Using known free models from Zen docs (--force)")
-        free = FREE_MODELS
-    else:
-        print("Fetching models from API...")
-        models = fetch_models(api_key)
-        print(f"Found {len(models)} models\n")
+    print(f"\nFree models ({len(free)}):")
+    for m in sorted(free):
+        print(f"  {m}")
 
-        free = []
-        paid = []
-        skipped = []
-
-        for i, model_id in enumerate(models, 1):
-            sys.stdout.write(f"[{i}/{len(models)}] {model_id}... ")
-            sys.stdout.flush()
-
-            result = test_model(model_id, api_key)
-            if result is True:
-                print("FREE")
-                free.append(model_id)
-            elif result is False:
-                print("paid")
-                paid.append(model_id)
-            else:
-                print("skip")
-                skipped.append(model_id)
-
-            time.sleep(0.5)
-
-        print(f"\n--- Results ---")
-        print(f"Free: {len(free)}")
-        print(f"Paid: {len(paid)}")
-        print(f"Skipped: {len(skipped)}")
-
-    if free:
-        print(f"\nFree models:")
-        for m in sorted(free):
-            print(f"  {m}")
-
-        update_config(free)
-        print(f"\nUpdated {CONFIG_PATH}")
-    else:
-        print("\nNo free models found.")
+    update_config(free)
+    print(f"\nUpdated {CONFIG_PATH}")
 
 
 if __name__ == "__main__":
