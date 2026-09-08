@@ -20,28 +20,37 @@ dotfiles/
 │   └── .config/mise/   global tool versions (node, python, rust)
 ├── opencode/
 │   └── .config/opencode/  opencode theme
-└── ssh/
-    └── .ssh/           ssh host shortcuts
+├── ssh/
+│   └── .ssh/           ssh host shortcuts
+└── bin/
+    └── .local/bin/     personal scripts
 ```
 
 ## zsh modules
 
-| File | Purpose |
-|------|---------|
-| `10-env.zsh`        | PATH, locale |
-| `20-mise.zsh`       | mise version manager integration |
-| `30-plugins.zsh`    | completions, autosuggestions, fzf |
-| `40-aliases.zsh`    | ls/cat/clear replacements (eza, bat) |
-| `50-navigation.zsh` | cd aliases + zoxide |
-| `60-git.zsh`        | git command aliases |
-| `70-headroom.zsh`   | tool-specific aliases (oc) |
-| `80-prompt.zsh`     | powerlevel10k theme |
-| `90-syntax.zsh`     | syntax highlighting (must load last) |
+| File                | Purpose                                  |
+| ------------------- | ---------------------------------------- |
+| `10-env.zsh`        | PATH, locale                             |
+| `20-mise.zsh`       | mise version manager integration         |
+| `25-bun.zsh`        | bun completions                          |
+| `30-plugins.zsh`    | completions, autosuggestions, fzf        |
+| `40-aliases.zsh`    | ls/cat/clear replacements (eza, bat)     |
+| `50-navigation.zsh` | cd aliases + zoxide                      |
+| `60-git.zsh`        | git command aliases                      |
+| `70-headroom.zsh`   | headroom env, tool-specific aliases (oc) |
+| `80-prompt.zsh`     | powerlevel10k theme                      |
+| `90-syntax.zsh`     | syntax highlighting (must load last)     |
+
+## bin
+
+| File                  | Purpose                                                                                  |
+| --------------------- | ---------------------------------------------------------------------------------------- |
+| `oc-update-whitelist` | fetch model pricing from models.dev and update opencode's zen whitelist with free models |
 
 ## Install
 
 ```sh
-stow zsh git mise opencode ssh   # create all symlinks
+stow zsh git mise opencode ssh bin   # create all symlinks
 ```
 
 ### Common stow commands
