@@ -18,6 +18,8 @@ dotfiles/
 │   └── .gitconfig      git identity, SSH signing, pager
 ├── mise/
 │   └── .config/mise/   global tool versions (node, python, rust)
+├── nvim/
+│   └── .config/nvim/   neovim (LazyVim) config
 ├── opencode/
 │   └── .config/opencode/  opencode theme
 ├── ssh/
@@ -50,7 +52,7 @@ dotfiles/
 ## Install
 
 ```sh
-stow zsh git mise opencode ssh bin   # create all symlinks
+stow zsh git mise nvim opencode ssh bin   # create all symlinks
 ```
 
 ### Common stow commands
