@@ -11,7 +11,7 @@ mise() {
   local command
   command="${1:-}"
   if [ "$#" = 0 ]; then
-    command /home/pyyupsk/.local/bin/mise
+    command $HOME/.local/bin/mise
     return
   fi
   shift
@@ -19,17 +19,17 @@ mise() {
   case "$command" in
   deactivate|shell|sh)
     if [[ ! " $@ " =~ " --help " ]] && [[ ! " $@ " =~ " -h " ]]; then
-      eval "$(command /home/pyyupsk/.local/bin/mise "$command" "$@")"
+      eval "$(command $HOME/.local/bin/mise "$command" "$@")"
       return $?
     fi
     ;;
   esac
-  command /home/pyyupsk/.local/bin/mise "$command" "$@"
+  command $HOME/.local/bin/mise "$command" "$@"
 }
 
 autoload -Uz add-zsh-hook
 _mise_hook() {
-  eval "$(/home/pyyupsk/.local/bin/mise hook-env -s zsh "$@")";
+  eval "$($HOME/.local/bin/mise hook-env -s zsh "$@")";
 }
 _mise_hook_env_state() {
   local -a keys=(${(o)${(f)"$(typeset +m 'MISE_*' 2>/dev/null)"}##* })
@@ -71,9 +71,9 @@ if [ -z "${_mise_cmd_not_found:-}" ]; then
     [ -n "$(declare -f command_not_found_handler)" ] && eval "${$(declare -f command_not_found_handler)/command_not_found_handler/_command_not_found_handler}"
 
     function command_not_found_handler() {
-        if [[ "$1" != "mise" && "$1" != "mise-"* ]] && /home/pyyupsk/.local/bin/mise hook-not-found -s zsh -- "$1"; then
+        if [[ "$1" != "mise" && "$1" != "mise-"* ]] && $HOME/.local/bin/mise hook-not-found -s zsh -- "$1"; then
           if [ -n "${MISE_SHELL:-}" ]; then
-            eval "$(/home/pyyupsk/.local/bin/mise hook-env --force -s zsh)"
+            eval "$($HOME/.local/bin/mise hook-env --force -s zsh)"
           fi
           "$@"
         elif [ -n "$(declare -f _command_not_found_handler)" ]; then

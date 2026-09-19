@@ -4,9 +4,10 @@
 import json
 import subprocess
 import sys
+from pathlib import Path
 
 MODELS_DEV_URL = "https://models.dev/api.json"
-CONFIG_PATH = "/home/pyyupsk/.config/opencode/opencode.json"
+CONFIG_PATH = str(Path.home() / ".config" / "opencode" / "opencode.json")
 
 
 def fetch_free_models():

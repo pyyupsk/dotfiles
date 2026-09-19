@@ -11,8 +11,8 @@ for module in ~/.zshrc.d/*.zsh; do
 done
 
 # bun completions
-[ -s "/home/pyyupsk/.bun/_bun" ] && source "/home/pyyupsk/.bun/_bun"
-export PATH="/home/pyyupsk/.bun/bin:$PATH"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+export PATH="$HOME/.bun/bin:$PATH"
 
 # WSL2 mirrored networking: Windows reaches 127.0.0.1 but not [::1], so Node must bind IPv4 first
 export NODE_OPTIONS=--dns-result-order=ipv4first

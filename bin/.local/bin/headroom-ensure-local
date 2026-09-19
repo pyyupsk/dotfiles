@@ -13,11 +13,20 @@ LOCAL = HOME / ".zshrc.local"
 SECRET_RE = re.compile(r"TARGET_API_(URL|HEADERS)=")
 MARKER_START = "# >>> headroom secrets >>>"
 MARKER_END = "# <<< headroom secrets <<<"
-HEADROOM_FALLBACK = "/home/pyyupsk/.local/share/mise/installs/python/3.13/bin/headroom"
+
+
+def _headroom_exe():
+    found = shutil.which("headroom")
+    if found:
+        return found
+    candidates = sorted(Path.home().glob(".local/share/mise/installs/python/*/bin/headroom"))
+    if candidates:
+        return str(candidates[-1])
+    return "headroom"
 
 
 def run_ensure(args):
-    exe = shutil.which("headroom") or HEADROOM_FALLBACK
+    exe = _headroom_exe()
     cmd = [exe, "init", "hook", "ensure", *args]
     result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
     if result.returncode != 0 and "--marker" in args:

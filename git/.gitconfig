@@ -4,7 +4,7 @@
 	signingkey = ~/.ssh/id_ed25519.pub
 [init]
 	defaultBranch = main
-	templateDir = /home/pyyupsk/.git-template
+	templateDir = ~/.git-template
 [core]
 	pager = bat
 [color]
