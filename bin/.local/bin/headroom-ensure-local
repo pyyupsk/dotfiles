@@ -101,18 +101,35 @@ def _store_managed(merged):
     LOCAL.write_text(text)
 
 
+def _strip_managed_block():
+    """Remove hook-owned markers block; canonical vars live in 70-headroom.zsh."""
+    if not ZSHRC.exists():
+        return False
+    text = ZSHRC.read_text()
+    stripped = re.sub(
+        r"# >>> headroom persistent env >>>\n.*?# <<< headroom persistent env <<<\n?",
+        "",
+        text,
+        flags=re.DOTALL,
+    )
+    stripped = re.sub(r"\n{3,}", "\n\n", stripped)
+    if stripped != text:
+        ZSHRC.write_text(stripped)
+        return True
+    return False
+
+
 def relocate():
     if not ZSHRC.exists():
         return False
     kept, secrets = _split_zshrc()
-    if not secrets:
-        return False
-    ZSHRC.write_text("".join(kept))
-    # Merge by variable name so existing local secrets are never wiped.
-    merged = {**_read_managed(), **_index_by_var(secrets)}
-    _store_managed(merged)
-    LOCAL.chmod(0o600)
-    return True
+    if secrets:
+        ZSHRC.write_text("".join(kept))
+        # Merge by variable name so existing local secrets are never wiped.
+        merged = {**_read_managed(), **_index_by_var(secrets)}
+        _store_managed(merged)
+        LOCAL.chmod(0o600)
+    return _strip_managed_block() or bool(secrets)
 
 
 def main():

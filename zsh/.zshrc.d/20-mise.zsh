@@ -1,4 +1,5 @@
 # 20-mise.zsh - mise-en-place version manager integration
+# Generated via `mise activate zsh`; to refresh, rerun and re-apply $HOME portability.
 . "$HOME/.local/bin/env"
 export MISE_SHELL=zsh
 if [ -z "${__MISE_ORIG_PATH:-}" ]; then

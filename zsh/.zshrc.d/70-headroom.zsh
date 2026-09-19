@@ -1,9 +1,12 @@
-# 70-headroom.zsh - custom tool aliases
+# 70-headroom.zsh - headroom proxy env (non-secret) + aliases
+# Canonical home for headroom exports. Secrets (TARGET_API_*) live in
+# ~/.zshrc.local; headroom-ensure-local strips any hook-injected markers
+# block from the stowed .zshrc so this file stays source of truth.
 export HEADROOM_PORT="18787"
 export HEADROOM_HOST="127.0.0.1"
 export HEADROOM_MODE="token"
 export HEADROOM_BACKEND="anthropic"
-export HEADROOM_TELEMETRY="on"
+export HEADROOM_TELEMETRY="off"
 export ANTHROPIC_BASE_URL="http://127.0.0.1:18787"
 export ENABLE_TOOL_SEARCH="true"
 

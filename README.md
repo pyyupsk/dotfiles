@@ -30,24 +30,26 @@ dotfiles/
 
 ## zsh modules
 
-| File                | Purpose                                  |
-| ------------------- | ---------------------------------------- |
-| `10-env.zsh`        | PATH, locale                             |
-| `20-mise.zsh`       | mise version manager integration         |
-| `25-bun.zsh`        | bun completions                          |
-| `30-plugins.zsh`    | completions, autosuggestions, fzf        |
-| `40-aliases.zsh`    | ls/cat/clear replacements (eza, bat)     |
-| `50-navigation.zsh` | cd aliases + zoxide                      |
-| `60-git.zsh`        | git command aliases                      |
-| `70-headroom.zsh`   | headroom env, tool-specific aliases (oc) |
-| `80-prompt.zsh`     | powerlevel10k theme                      |
-| `90-syntax.zsh`     | syntax highlighting (must load last)     |
+| File                | Purpose                                |
+| ------------------- | -------------------------------------- |
+| `10-env.zsh`        | PATH, locale, Node options             |
+| `15-history.zsh`    | command history options                |
+| `20-mise.zsh`       | mise version manager integration       |
+| `25-bun.zsh`        | bun runtime + completions              |
+| `30-plugins.zsh`    | completions, autosuggestions, fzf      |
+| `40-aliases.zsh`    | ls/cat/clear replacements (eza, bat)   |
+| `50-navigation.zsh` | cd aliases + zoxide                    |
+| `60-git.zsh`        | git command aliases                    |
+| `70-headroom.zsh`   | headroom env (non-secret) + oc aliases |
+| `80-prompt.zsh`     | powerlevel10k theme                    |
+| `90-syntax.zsh`     | syntax highlighting (must load last)   |
 
 ## bin
 
-| File                  | Purpose                                                                                  |
-| --------------------- | ---------------------------------------------------------------------------------------- |
-| `oc-update-whitelist` | fetch model pricing from models.dev and update opencode's zen whitelist with free models |
+| File                    | Purpose                                                                                  |
+| ----------------------- | ---------------------------------------------------------------------------------------- |
+| `oc-update-whitelist`   | fetch model pricing from models.dev and update opencode's zen whitelist with free models |
+| `headroom-ensure-local` | run headroom ensure, relocate secrets to `~/.zshrc.local`, strip hook block              |
 
 ## Local secrets
 
