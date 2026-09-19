@@ -20,8 +20,8 @@ dotfiles/
 │   └── .config/mise/   global tool versions (node, python, rust)
 ├── nvim/
 │   └── .config/nvim/   neovim (LazyVim) config
-├── opencode/
-│   └── .config/opencode/  opencode theme
+├── opencode/            package: opencode
+│   └── .config/opencode/  config, theme, plugin, skill (no binary/locks)
 ├── ssh/
 │   └── .ssh/           ssh host shortcuts
 ├── claude/             package: claude
@@ -65,7 +65,9 @@ re-injected `TARGET_API_*` lines from stowed `.zshrc` to `~/.zshrc.local`.
 Ports `~/.claude` personal config (settings, `STYLE.md`/`RTK.md`, agents,
 commands, statusline, one hook). Excluded on purpose:
 
-- `skills/` — 22M of symlinks into `~/.agents`, separate system
+- `skills/` — symlinks into `~/.agents/skills`, separate system.
+  Real dirs (`impeccable-claude`, `lurker`, `codebase-onboarding`) also live
+  there, symlinked back; plugin-synced `synced/` stays put
 - `settings.json:autoMode` — machine-generated session state, rebuilds itself
 - everything else under `~/.claude` — sessions, credentials, caches
 
@@ -74,6 +76,20 @@ commands, statusline, one hook). Excluded on purpose:
 ```sh
 mkdir -p ~/.claude && stow claude
 ```
+
+## opencode
+
+Ports `~/.config/opencode` personal config (`opencode.json`, theme, rtk
+plugin, impeccable command). Skills live outside repo under
+`~/.agents/skills/` (`impeccable-opencode`), symlinked in. Excluded on purpose:
+
+- `skills/` — live in `~/.agents/skills/` (`impeccable-opencode`), symlinked in
+- `bun.lock`, `package-lock.json`, `node_modules` — reinstallable
+- `cli.json`, `service.json` (holds password), backups — machine state
+
+Notes: `~/.config/opencode` must pre-exist before stow (same folding trap as
+claude). `oc-update-whitelist` writes through the `opencode.json` symlink, so
+whitelist refreshes show as repo diffs — commit them as chores.
 
 ## Install
 
