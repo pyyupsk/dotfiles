@@ -10,6 +10,9 @@ symlinks every file inside into place.
 ```tree
 dotfiles/
 ├── README.md           this file
+├── shared/             package: shared — single-source docs (source/RTK.md,
+│                       source/STYLE.md); .claude/ + .config/opencode/ link
+│                       inward so `stow shared` serves both tools
 ├── zsh/                package: zsh
 │   ├── .zshrc          entry point: sources every file in ~/.zshrc.d
 │   ├── .zshrc.d/       one module per concern, numbered for load order
@@ -77,6 +80,13 @@ commands, statusline, one hook). Excluded on purpose:
 mkdir -p ~/.claude && stow claude
 ```
 
+`--no-folding` keeps per-file links so machine state (sessions, credentials)
+never lands inside repo dirs. `shared` serves both tools, so stow it alongside:
+
+```sh
+stow --no-folding shared claude opencode
+```
+
 ## opencode
 
 Ports `~/.config/opencode` personal config (`opencode.json`, theme, rtk
@@ -94,7 +104,7 @@ whitelist refreshes show as repo diffs — commit them as chores.
 ## Install
 
 ```sh
-stow zsh git mise nvim opencode ssh bin   # create all symlinks
+stow zsh git mise nvim opencode ssh bin shared   # create all symlinks
 mkdir -p ~/.claude && stow claude         # claude needs pre-existing dir
 ```
 
