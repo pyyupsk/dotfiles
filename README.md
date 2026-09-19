@@ -24,6 +24,8 @@ dotfiles/
 │   └── .config/opencode/  opencode theme
 ├── ssh/
 │   └── .ssh/           ssh host shortcuts
+├── claude/             package: claude
+│   └── .claude/        settings, style docs, agents, commands, hooks
 └── bin/
     └── .local/bin/     personal scripts
 ```
@@ -58,10 +60,26 @@ sourced at end of `.zshrc`. Template: `zsh/.zshrc.local.example`.
 `headroom-ensure-local` (bin package) runs headroom ensure, then moves
 re-injected `TARGET_API_*` lines from stowed `.zshrc` to `~/.zshrc.local`.
 
+## claude
+
+Ports `~/.claude` personal config (settings, `STYLE.md`/`RTK.md`, agents,
+commands, statusline, one hook). Excluded on purpose:
+
+- `skills/` — 22M of symlinks into `~/.agents`, separate system
+- `settings.json:autoMode` — machine-generated session state, rebuilds itself
+- everything else under `~/.claude` — sessions, credentials, caches
+
+`~/.claude` must pre-exist so stow links per-file (state stays out of repo):
+
+```sh
+mkdir -p ~/.claude && stow claude
+```
+
 ## Install
 
 ```sh
 stow zsh git mise nvim opencode ssh bin   # create all symlinks
+mkdir -p ~/.claude && stow claude         # claude needs pre-existing dir
 ```
 
 ### Common stow commands
