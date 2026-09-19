@@ -1,0 +1,118 @@
+#!/usr/bin/env python3
+"""Relocate headroom TARGET_API_* secrets from stowed .zshrc to ~/.zshrc.local."""
+
+import re
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+HOME = Path.home()
+ZSHRC = HOME / "dotfiles" / "zsh" / ".zshrc"
+LOCAL = HOME / ".zshrc.local"
+SECRET_RE = re.compile(r"TARGET_API_(URL|HEADERS)=")
+MARKER_START = "# >>> headroom secrets >>>"
+MARKER_END = "# <<< headroom secrets <<<"
+HEADROOM_FALLBACK = "/home/pyyupsk/.local/share/mise/installs/python/3.13/bin/headroom"
+
+
+def run_ensure(args):
+    exe = shutil.which("headroom") or HEADROOM_FALLBACK
+    cmd = [exe, "init", "hook", "ensure", *args]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+    if result.returncode != 0 and "--marker" in args:
+        # Older headroom builds lack --marker; retry with it (and its value) dropped.
+        retry = [a for a in args if a != "--marker" and not a.startswith("headroom-init")]
+        result = subprocess.run(
+            [exe, "init", "hook", "ensure", *retry],
+            capture_output=True,
+            text=True,
+            timeout=60,
+        )
+    return result.returncode
+
+
+def _var_name(line):
+    m = re.match(r"\s*(?:export\s+)?([A-Za-z_]\w*)\s*=", line)
+    return m.group(1) if m else None
+
+
+def _split_zshrc():
+    """Split stowed .zshrc into (kept_lines, secret_lines)."""
+    lines = ZSHRC.read_text().splitlines(keepends=True)
+    secrets = [ln for ln in lines if SECRET_RE.search(ln)]
+    kept = [ln for ln in lines if not SECRET_RE.search(ln)]
+    return kept, secrets
+
+
+def _index_by_var(lines):
+    indexed = {}
+    for ln in lines:
+        name = _var_name(ln)
+        if name:
+            indexed[name] = ln
+    return indexed
+
+
+def _read_managed():
+    """Parse managed block in LOCAL into {var: line}; {} when absent."""
+    if not LOCAL.exists():
+        return {}
+    m = re.search(
+        rf"{re.escape(MARKER_START)}\n(?P<body>.*?){re.escape(MARKER_END)}",
+        LOCAL.read_text(),
+        re.DOTALL,
+    )
+    if not m:
+        return {}
+    return _index_by_var(m.group("body").splitlines(keepends=True))
+
+
+def _store_managed(merged):
+    block = (
+        f"{MARKER_START}\n"
+        + "".join(merged[name] for name in sorted(merged))
+        + f"{MARKER_END}\n"
+    )
+    if not LOCAL.exists():
+        LOCAL.write_text(
+            "# Local-only secrets. Never commit.\n"
+            "# Managed by headroom-ensure-local.\n" + block
+        )
+        return
+    text = LOCAL.read_text()
+    pattern = re.compile(
+        rf"{re.escape(MARKER_START)}\n.*?{re.escape(MARKER_END)}\n?",
+        re.DOTALL,
+    )
+    if pattern.search(text):
+        text = pattern.sub(block, text)
+    else:
+        text = text.rstrip("\n") + "\n" + block
+    LOCAL.write_text(text)
+
+
+def relocate():
+    if not ZSHRC.exists():
+        return False
+    kept, secrets = _split_zshrc()
+    if not secrets:
+        return False
+    ZSHRC.write_text("".join(kept))
+    # Merge by variable name so existing local secrets are never wiped.
+    merged = {**_read_managed(), **_index_by_var(secrets)}
+    _store_managed(merged)
+    LOCAL.chmod(0o600)
+    return True
+
+
+def main():
+    args = sys.argv[1:] or ["--profile", "init-user"]
+    code = run_ensure(args)
+    moved = relocate()
+    print(f"ensure exit={code} secrets_relocated={moved}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -7,7 +7,7 @@ Personal configuration, organized by tool and managed with [GNU Stow](https://ww
 Each package directory mirrors your `$HOME` layout exactly. Running `stow <pkg>`
 symlinks every file inside into place.
 
-```
+```tree
 dotfiles/
 ├── README.md           this file
 ├── zsh/                package: zsh
@@ -48,6 +48,13 @@ dotfiles/
 | File                  | Purpose                                                                                  |
 | --------------------- | ---------------------------------------------------------------------------------------- |
 | `oc-update-whitelist` | fetch model pricing from models.dev and update opencode's zen whitelist with free models |
+
+## Local secrets
+
+Machine-private values live outside repo in `~/.zshrc.local` (chmod 600),
+sourced at end of `.zshrc`. Template: `zsh/.zshrc.local.example`.
+`headroom-ensure-local` (bin package) runs headroom ensure, then moves
+re-injected `TARGET_API_*` lines from stowed `.zshrc` to `~/.zshrc.local`.
 
 ## Install
 
