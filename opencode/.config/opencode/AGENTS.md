@@ -2,6 +2,10 @@
 
 Merge with project-specific instructions as needed.
 
+## 0. Brain (shared memory)
+
+First action of every session: run `cat ~/brain/AGENTS.md ~/brain/now.md`. They hold who the user is, deadlines, rules, and how to save new facts. For more, `grep -ril <keyword> ~/brain` and open only the matching file.
+
 **Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
 
 ## 1. Think Before Coding
