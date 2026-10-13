@@ -1,202 +1,77 @@
 {
-	"$schema": "https://opencode.ai/config.json",
-	"instructions": [
-		"RTK.md",
-		"STYLE.md"
-	],
-	"plugin": [
-		"@dietrichgebert/ponytail"
-	],
-	"lsp": true,
-	"enabled_providers": [
-		"opencode",
-		"ollama-cloud",
-		"aipass"
-	],
-	"model": "aipass/gpt-5.6-sol",
-	"small_model": "aipass/gemini-3.1-flash-lite",
-	"agent": {
-		"build": {
-			"model": "aipass/gpt-5.6-sol"
-		},
-		"plan": {
-			"model": "aipass/glm-5.2"
-		}
-	},
-	"mcp": {
-		"serena": {
-			"type": "local",
-			"command": [
-				"uvx",
-				"--from",
-				"serena-agent",
-				"serena",
-				"start-mcp-server",
-				"--project-from-cwd",
-				"--context",
-				"agent",
-				"--open-web-dashboard",
-				"False"
-			],
-			"enabled": true
-		},
-		"headroom": {
-			"type": "local",
-			"command": [
-				"headroom",
-				"mcp",
-				"serve"
-			],
-			"enabled": true,
-			"environment": {
-				"HEADROOM_PROXY_URL": "http://127.0.0.1:65535"
-			}
-		}
-	},
-	"provider": {
-		"aipass": {
-			"npm": "@ai-sdk/openai-compatible",
-			"name": "AIPass",
-			"options": {
-				"baseURL": "http://localhost:47871/v1",
-				"apiKey": "unused"
-			},
-			"models": {
-				"gemini-3.1-flash-lite": {
-					"name": "Gemini 3.1 Flash Lite (Unlimited)"
-				},
-				"gemini-3.5-flash-lite": {
-					"name": "Gemini 3.5 Flash Lite"
-				},
-				"gemini-3.7-flash": {
-					"name": "Gemini 3.7 Flash"
-				},
-				"gemini-3.1-pro-preview": {
-					"name": "Gemini 3.1 Pro Preview"
-				},
-				"claude-sonnet-5@default": {
-					"name": "Claude Sonnet 5"
-				},
-				"claude-opus-5@azure": {
-					"name": "Claude Opus 5"
-				},
-				"gpt-5.6-terra": {
-					"name": "GPT-5.6 Terra"
-				},
-				"gpt-5.6-sol": {
-					"name": "GPT-5.6 Sol"
-				},
-				"DeepSeek-V3.2": {
-					"name": "DeepSeek V3.2"
-				},
-				"grok-4.3": {
-					"name": "Grok 4.3"
-				},
-				"qwen3-next-80b-a3b-instruct-maas": {
-					"name": "Qwen3 Next 80B A3B Instruct"
-				},
-				"glm-5.2": {
-					"name": "GLM 5.2"
-				},
-				"Kimi-K2.7-Code": {
-					"name": "Kimi K2.7 Code"
-				},
-				"sonar": {
-					"name": "Sonar"
-				},
-				"sonar-reasoning-pro": {
-					"name": "Sonar Reasoning Pro"
-				},
-				"Llama-4-Maverick-17B-128E-Instruct-FP8-1": {
-					"name": "Llama 4 Maverick 17B 128E Instruct FP8"
-				},
-				"Llama-4-Scout-17B-16E-Instruct-1": {
-					"name": "Llama 4 Scout 17B 16E Instruct"
-				},
-				"minimax-m2-maas": {
-					"name": "MiniMax M2"
-				},
-				"Mistral-Large-3": {
-					"name": "Mistral Large 3"
-				},
-				"Mistral-Medium-3": {
-					"name": "Mistral Medium 3"
-				},
-				"pathumma-thaillm-8b": {
-					"name": "Pathumma ThaiLLM 8B"
-				},
-				"openthai2.0-legal@jts": {
-					"name": "OpenThaiGPT 2.0 Legal"
-				}
-			}
-		},
-		"headroom": {
-			"npm": "@ai-sdk/openai-compatible",
-			"name": "Headroom Proxy",
-			"options": {
-				"baseURL": "http://127.0.0.1:65535/v1"
-			},
-			"models": {
-				"gpt-4o": {
-					"name": "GPT-4o",
-					"limit": {
-						"context": 128000,
-						"output": 16384
-					}
-				},
-				"gpt-4.1": {
-					"name": "GPT-4.1",
-					"limit": {
-						"context": 1048576,
-						"output": 32768
-					}
-				}
-			}
-		},
-		"opencode": {
-			"whitelist": [
-				"big-pickle",
-				"deepseek-v4-flash-free",
-				"glm-4.7-free",
-				"glm-5-free",
-				"grok-code",
-				"hy3-free",
-				"hy3-preview-free",
-				"kimi-k2.5-free",
-				"laguna-s-2.1-free",
-				"ling-2.6-flash-free",
-				"ling-3.0-flash-fin-free",
-				"ling-3.0-flash-free",
-				"ling-3.0-tiny-free",
-				"longcat-2.0-free",
-				"mimo-v2-flash-free",
-				"mimo-v2-omni-free",
-				"mimo-v2-pro-free",
-				"mimo-v2.5-free",
-				"minimax-m2.1-free",
-				"minimax-m2.5-free",
-				"minimax-m3-free",
-				"muse-spark-1.2-contributor-free",
-				"muse-spark-1.3-contributor-free",
-				"nemotron-3-super-free",
-				"nemotron-3-ultra-free",
-				"nemotron-3.5-lightning-free",
-				"north-mini-code-free",
-				"qwen3.6-plus-free",
-				"ring-2.6-1t-free",
-				"trinity-large-preview-free",
-				"x-preview-f-free"
-			]
-		},
-		"ollama-cloud": {
-			"whitelist": [
-				"gemma4:31b",
-				"gpt-oss:120b",
-				"gpt-oss:20b",
-				"nemotron-3-nano:30b",
-				"nemotron-3-super",
-				"nemotron-3-ultra"
-			]
-		}
-	}
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": [
+    "RTK.md",
+    "STYLE.md"
+  ],
+  "plugin": [
+    "@dietrichgebert/ponytail"
+  ],
+  "lsp": true,
+  "enabled_providers": [
+    "opencode",
+    "opencode-go"
+  ],
+  "model": "opencode-go/deepseek-v4.1-flash",
+  "small_model": "opencode/mimo-v2.6-flash-free",
+  "agent": {
+    "build": {
+      "model": "opencode-go/deepseek-v4.1-flash"
+    },
+    "plan": {
+      "model": "opencode-go/deepseek-v4.1-flash"
+    }
+  },
+  "mcp": {
+    "serena": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "--from",
+        "serena-agent",
+        "serena",
+        "start-mcp-server",
+        "--project-from-cwd",
+        "--context",
+        "agent",
+        "--open-web-dashboard",
+        "False"
+      ],
+      "enabled": true
+    },
+    "headroom": {
+      "type": "local",
+      "command": [
+        "/home/pyyupsk/.local/share/mise/installs/python/3.13/bin/headroom",
+        "mcp",
+        "serve"
+      ],
+      "enabled": true
+    }
+  },
+  "provider": {
+    "headroom": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Headroom Proxy",
+      "options": {
+        "baseURL": "{env:HEADROOM_PROXY_URL}/v1"
+      },
+      "models": {
+        "gpt-4o": {
+          "name": "GPT-4o",
+          "limit": {
+            "context": 128000,
+            "output": 16384
+          }
+        },
+        "gpt-4.1": {
+          "name": "GPT-4.1",
+          "limit": {
+            "context": 1048576,
+            "output": 32768
+          }
+        }
+      }
+    }
+  }
 }

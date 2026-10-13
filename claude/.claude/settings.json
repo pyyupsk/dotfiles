@@ -7,7 +7,6 @@
     "commit": "",
     "pr": ""
   },
-  "model": "opus[1m]",
   "hooks": {
     "PreToolUse": [
       {
@@ -89,7 +88,8 @@
     "headroom@headroom-marketplace": true,
     "ponytail@ponytail": true,
     "typescript-lsp@claude-plugins-official": true,
-    "simple-english@simple-english": true
+    "simple-english@simple-english": true,
+    "watch@claude-video": true
   },
   "extraKnownMarketplaces": {
     "headroom-marketplace": {
@@ -109,6 +109,12 @@
         "source": "github",
         "repo": "AminBlg/SimpleEnglish"
       }
+    },
+    "claude-video": {
+      "source": {
+        "source": "github",
+        "repo": "bradautomates/claude-video"
+      }
     }
   },
   "modelSettings": {
@@ -120,5 +126,6 @@
     }
   },
   "theme": "dark",
-  "switchModelsOnFlag": true
+  "switchModelsOnFlag": true,
+  "model": "claude-opus-5-5[1m]"
 }
