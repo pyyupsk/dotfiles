@@ -1,5 +1,6 @@
 [tools]
 bun = "latest"
+deno = "2.9.7"
 node = "lts"
 python = "3.13"
 rust = "stable"
