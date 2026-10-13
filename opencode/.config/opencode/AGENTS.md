@@ -4,7 +4,7 @@ Merge with project-specific instructions as needed.
 
 ## 0. Brain (shared memory)
 
-First action of every session: run `cat ~/brain/AGENTS.md ~/brain/now.md`. They hold who the user is, deadlines, rules, and how to save new facts. For more, `grep -ril <keyword> ~/brain` and open only the matching file.
+First action of every session, alone in its own command: `cat ~/brain/AGENTS.md ~/brain/now.md`. They hold who the user is, deadlines, rules, and how to save new facts. Search the brain only after that, with `rg -n -i -C2 "<english>|<thai>" ~/brain --glob '!inbox/**'`. Never search the brain and the current repo in one command.
 
 **Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
 
