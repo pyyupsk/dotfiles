@@ -1,12 +1,12 @@
 {
   "env": {
-    "ANTHROPIC_BASE_URL": "http://127.0.0.1:18787",
     "ENABLE_TOOL_SEARCH": "true"
   },
   "attribution": {
     "commit": "",
     "pr": ""
   },
+  "model": "claude-opus-5-5[1m]",
   "hooks": {
     "PreToolUse": [
       {
@@ -15,16 +15,6 @@
           {
             "type": "command",
             "command": "rtk hook claude"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.local/bin/headroom-ensure-local --profile init-user --marker headroom-init-claude",
-            "timeout": 15
           }
         ]
       },
@@ -48,16 +38,6 @@
       }
     ],
     "SessionStart": [
-      {
-        "matcher": "startup|resume",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.local/bin/headroom-ensure-local --profile init-user --marker headroom-init-claude",
-            "timeout": 15
-          }
-        ]
-      },
       {
         "matcher": "",
         "hooks": [
@@ -85,19 +65,12 @@
     "command": "bash \"$HOME/.claude/statusline-command.sh\""
   },
   "enabledPlugins": {
-    "headroom@headroom-marketplace": true,
     "ponytail@ponytail": true,
     "typescript-lsp@claude-plugins-official": true,
     "simple-english@simple-english": true,
     "watch@claude-video": true
   },
   "extraKnownMarketplaces": {
-    "headroom-marketplace": {
-      "source": {
-        "source": "github",
-        "repo": "chopratejas/headroom"
-      }
-    },
     "ponytail": {
       "source": {
         "source": "github",
@@ -126,6 +99,5 @@
     }
   },
   "theme": "dark",
-  "switchModelsOnFlag": true,
-  "model": "claude-opus-5-5[1m]"
+  "switchModelsOnFlag": true
 }

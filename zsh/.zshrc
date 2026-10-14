@@ -10,7 +10,7 @@ for module in ~/.zshrc.d/*.zsh; do
   source "$module"
 done
 
-# Local secrets - ~/.zshrc.local holds machine-private exports (headroom API
-# headers, tokens). Never commit; see zsh/.zshrc.local.example for template.
+# Local secrets - ~/.zshrc.local holds machine-private exports (AI gateway URL
+# and key). Never commit; see zsh/.zshrc.local.example for template.
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 export PATH="$HOME/.opencode/bin:$PATH"

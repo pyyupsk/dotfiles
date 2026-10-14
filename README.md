@@ -45,7 +45,7 @@ dotfiles/
 | `40-aliases.zsh`    | ls/cat/clear replacements (eza, bat)   |
 | `50-navigation.zsh` | cd aliases + zoxide                    |
 | `60-git.zsh`        | git command aliases                    |
-| `70-headroom.zsh`   | headroom env (non-secret) + oc aliases |
+| `70-ai.zsh`         | AI env (non-secret) + oc aliases       |
 | `80-prompt.zsh`     | powerlevel10k theme                    |
 | `90-syntax.zsh`     | syntax highlighting (must load last)   |
 
@@ -54,14 +54,13 @@ dotfiles/
 | File                    | Purpose                                                                                  |
 | ----------------------- | ---------------------------------------------------------------------------------------- |
 | `oc-update-whitelist`   | fetch model pricing from models.dev and update opencode's zen whitelist with free models |
-| `headroom-ensure-local` | run headroom ensure, relocate secrets to `~/.zshrc.local`, strip hook block              |
 
 ## Local secrets
 
 Machine-private values live outside repo in `~/.zshrc.local` (chmod 600),
 sourced at end of `.zshrc`. Template: `zsh/.zshrc.local.example`.
-`headroom-ensure-local` (bin package) runs headroom ensure, then moves
-re-injected `TARGET_API_*` lines from stowed `.zshrc` to `~/.zshrc.local`.
+Claude Code and OpenAI-compatible tools read the AI gateway URL and key
+from there.
 
 ## claude
 
