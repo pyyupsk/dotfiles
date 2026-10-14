@@ -13,3 +13,4 @@ done
 # Local secrets - ~/.zshrc.local holds machine-private exports (headroom API
 # headers, tokens). Never commit; see zsh/.zshrc.local.example for template.
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+export PATH="$HOME/.opencode/bin:$PATH"
