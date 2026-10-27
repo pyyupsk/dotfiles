@@ -1,0 +1,104 @@
+# Runs as SYSTEM during the specialize pass. Rule: lightest Windows that still runs Valorant.
+# Never touch Secure Boot, TPM, VBS/HVCI, Defender or Windows Update: Vanguard checks them.
+$ErrorActionPreference = 'Continue'
+Start-Transcript -Path "$env:windir\Setup\Scripts\Specialize.log"
+
+# Edge downloads Riot Client and the NVIDIA driver. Windows Security shows Memory Integrity.
+# DesktopAppInstaller cannot be removed on 26300. The rest are frameworks.
+$keep = 'Microsoft.MicrosoftEdge', 'Microsoft.SecHealthUI', 'Microsoft.WindowsNotepad', 'Microsoft.DesktopAppInstaller', 'Microsoft.VCLibs', 'Microsoft.UI.Xaml',
+        'Microsoft.NET.Native', 'Microsoft.WindowsAppRuntime'
+Get-AppxProvisionedPackage -Online | Where-Object {
+    $name = $_.DisplayName
+    -not ($keep | Where-Object { $name -like "$_*" })
+} | ForEach-Object {
+    Write-Output "remove appx $($_.DisplayName)"
+    Remove-AppxProvisionedPackage -Online -PackageName $_.PackageName | Out-Null
+}
+
+$capabilities = 'App.StepsRecorder', 'Browser.InternetExplorer', 'Hello.Face', 'MathRecognizer', 'Media.WindowsMediaPlayer',
+                'Microsoft.Wallpapers.Extended', 'Microsoft.Windows.PowerShell.ISE', 'Microsoft.Windows.WordPad',
+                'OneCoreUAP.OneSync', 'OpenSSH.Client', 'Print.Fax.Scan', 'Print.Management.Console', 'VBSCRIPT'
+Get-WindowsCapability -Online | Where-Object {
+    $name = $_.Name
+    $_.State -eq 'Installed' -and ($capabilities | Where-Object { $name -like "$_*" })
+} | ForEach-Object {
+    Write-Output "remove capability $($_.Name)"
+    Remove-WindowsCapability -Online -Name $_.Name | Out-Null
+}
+Disable-WindowsOptionalFeature -Online -FeatureName Recall -NoRestart -ErrorAction SilentlyContinue | Out-Null
+
+function Set-Dword($path, $name, $value) {
+    # New-Item -Force on an existing key wipes it, so only create missing keys.
+    if (-not (Test-Path $path)) { New-Item -Path $path -Force | Out-Null }
+    Set-ItemProperty -Path $path -Name $name -Value $value -Type DWord -Force
+}
+$pol = 'HKLM:\SOFTWARE\Policies\Microsoft'
+Set-Dword "$pol\Windows\DataCollection" AllowTelemetry 0
+Set-Dword "$pol\Windows\CloudContent" DisableWindowsConsumerFeatures 1
+Set-Dword "$pol\Windows\CloudContent" DisableCloudOptimizedContent 1
+Set-Dword "$pol\Windows\CloudContent" DisableConsumerAccountStateContent 1
+Set-Dword "$pol\Dsh" AllowNewsAndInterests 0
+Set-Dword "$pol\Windows\WindowsCopilot" TurnOffWindowsCopilot 1
+Set-Dword "$pol\Windows\WindowsAI" DisableAIDataAnalysis 1
+Set-Dword "$pol\Windows\WindowsAI" AllowRecallEnablement 0
+Set-Dword "$pol\Windows\Explorer" DisableSearchBoxSuggestions 1
+Set-Dword "$pol\Windows\Windows Search" AllowCortana 0
+Set-Dword "$pol\Windows\Windows Search" DisableWebSearch 1
+Set-Dword "$pol\Windows\Windows Search" ConnectedSearchUseWeb 0
+Set-Dword "$pol\Windows\AdvertisingInfo" DisabledByGroupPolicy 1
+Set-Dword "$pol\Windows\GameDVR" AllowGameDVR 0
+Set-Dword "$pol\Windows\Windows Error Reporting" Disabled 1
+Set-Dword "$pol\Windows\DeliveryOptimization" DODownloadMode 0
+Set-Dword "$pol\Edge" StartupBoostEnabled 0
+Set-Dword "$pol\Edge" BackgroundModeEnabled 0
+Set-Dword "$pol\Edge" HideFirstRunExperience 1
+
+foreach ($svc in 'DiagTrack', 'dmwappushservice') {
+    Set-Dword "HKLM:\SYSTEM\CurrentControlSet\Services\$svc" Start 4
+}
+foreach ($task in 'Application Experience\Microsoft Compatibility Appraiser', 'Application Experience\ProgramDataUpdater',
+                  'Customer Experience Improvement Program\Consolidator', 'Customer Experience Improvement Program\UsbCeip',
+                  'Feedback\Siuf\DmClient', 'Feedback\Siuf\DmClientOnScenarioDownload') {
+    $path, $name = "\Microsoft\Windows\$(Split-Path $task)\", (Split-Path $task -Leaf)
+    Get-ScheduledTask -TaskPath $path -TaskName $name -ErrorAction SilentlyContinue | Disable-ScheduledTask | Out-Null
+}
+# Stops Windows Update from pushing Outlook, Dev Home and Teams after setup.
+foreach ($key in 'OutlookUpdate', 'DevHomeUpdate', 'MS_Outlook', 'TeamsUpdate') {
+    Remove-Item "HKLM:\SOFTWARE\Microsoft\WindowsUpdate\Orchestrator\UScheduler_Oobe\$key" -Force -ErrorAction SilentlyContinue
+}
+
+# Dual boot with Arch: no auto device encryption, no Fast Startup or hibernate, clock in UTC.
+Set-Dword 'HKLM:\SYSTEM\CurrentControlSet\Control\BitLocker' PreventDeviceEncryption 1
+Set-Dword 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power' HiberbootEnabled 0
+Set-Dword 'HKLM:\SYSTEM\CurrentControlSet\Control\TimeZoneInformation' RealTimeIsUniversal 1
+powercfg /hibernate off
+powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
+
+# Default user profile: no OneDrive, no suggested or silently installed apps, dark theme, file extensions.
+reg load 'HKU\DefaultUser' "$env:SystemDrive\Users\Default\NTUSER.DAT" | Out-Null
+reg delete 'HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Run' /v OneDriveSetup /f 2>$null | Out-Null
+$cdm = 'HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager'
+foreach ($name in 'ContentDeliveryAllowed', 'OemPreInstalledAppsEnabled', 'PreInstalledAppsEnabled', 'SilentInstalledAppsEnabled',
+                  'SoftLandingEnabled', 'SystemPaneSuggestionsEnabled', 'SubscribedContentEnabled',
+                  'SubscribedContent-310093Enabled', 'SubscribedContent-338388Enabled', 'SubscribedContent-338389Enabled',
+                  'SubscribedContent-338393Enabled', 'SubscribedContent-353694Enabled', 'SubscribedContent-353696Enabled') {
+    reg add $cdm /v $name /t REG_DWORD /d 0 /f | Out-Null
+}
+$adv = 'HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
+reg add $adv /v HideFileExt /t REG_DWORD /d 0 /f | Out-Null
+reg add $adv /v Start_IrisRecommendations /t REG_DWORD /d 0 /f | Out-Null
+$theme = 'HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize'
+reg add $theme /v AppsUseLightTheme /t REG_DWORD /d 0 /f | Out-Null
+reg add $theme /v SystemUsesLightTheme /t REG_DWORD /d 0 /f | Out-Null
+# First logon re-applies the light theme, so set dark mode again from RunOnce.
+$dark = 'reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize /v {0} /t REG_DWORD /d 0 /f'
+$runOnce = 'HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\RunOnce'
+reg add $runOnce /v DarkApps /d ($dark -f 'AppsUseLightTheme') /f | Out-Null
+reg add $runOnce /v DarkSystem /d ($dark -f 'SystemUsesLightTheme') /f | Out-Null
+$cloud = 'HKU\DefaultUser\Software\Policies\Microsoft\Windows\CloudContent'
+reg add $cloud /v DisableSpotlightCollectionOnDesktop /t REG_DWORD /d 1 /f | Out-Null
+reg add $cloud /v DisableWindowsSpotlightFeatures /t REG_DWORD /d 1 /f | Out-Null
+[gc]::Collect()
+reg unload 'HKU\DefaultUser' | Out-Null
+
+Stop-Transcript

@@ -1,0 +1,90 @@
+[env]
+TERM = "xterm-256color"
+
+[terminal.shell]
+program = "C:\\Users\\pthip\\AppData\\Local\\Microsoft\\WindowsApps\\pwsh.exe"
+args = ["-NoExit", "-WorkingDirectory", "C:\\Users\\pthip"]
+
+[window]
+padding = { x = 10, y = 10 }
+opacity = 0.95
+blur = true
+dynamic_padding = true
+decorations = "Full"
+
+[window.dimensions]
+columns = 142
+lines = 36
+
+[font]
+size = 12.0
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "Bold Italic"
+
+[colors.primary]
+background = "#141417"
+foreground = "#c7c7cc"
+
+[colors.cursor]
+text = "#141417"
+cursor = "#ffb638"
+
+[colors.vi_mode_cursor]
+text = "#141417"
+cursor = "#28a9ff"
+
+[colors.selection]
+text = "#141417"
+background = "#282727"
+
+[colors.normal]
+black = "#282727"
+red = "#d62c2c"
+green = "#42dd76"
+yellow = "#ffb638"
+blue = "#28a9ff"
+magenta = "#a95eff"
+cyan = "#14e5d4"
+white = "#c7c7cc"
+
+[colors.bright]
+black = "#393836"
+red = "#d62c2c"
+green = "#42dd76"
+yellow = "#ffb638"
+blue = "#28a9ff"
+magenta = "#a95eff"
+cyan = "#14e5d4"
+white = "#ababb1"
+
+[scrolling]
+history = 10000
+
+[[keyboard.bindings]]
+key = "N"
+mods = "Control|Shift"
+action = "SpawnNewInstance"
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Control|Shift"
+action = "ToggleSimpleFullscreen"
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001b\r"
