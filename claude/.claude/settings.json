@@ -68,7 +68,8 @@
     "ponytail@ponytail": true,
     "typescript-lsp@claude-plugins-official": true,
     "simple-english@simple-english": true,
-    "watch@claude-video": true
+    "watch@claude-video": true,
+    "claude-code-setup@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "ponytail": {

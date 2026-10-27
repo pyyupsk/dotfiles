@@ -14,3 +14,6 @@ done
 # and key). Never commit; see zsh/.zshrc.local.example for template.
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 export PATH="$HOME/.opencode/bin:$PATH"
+
+# bun completions
+[ -s "/home/pyyupsk/.bun/_bun" ] && source "/home/pyyupsk/.bun/_bun"

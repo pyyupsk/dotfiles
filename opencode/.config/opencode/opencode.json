@@ -1,15 +1,33 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
-    "@dietrichgebert/ponytail"
+    "@dietrichgebert/ponytail",
+    "opencode-aipass"
   ],
   "lsp": true,
   "enabled_providers": [
     "opencode",
-    "opencode-go"
+    "opencode-go",
+    "9arm",
+    "aipass"
   ],
   "model": "opencode-go/deepseek-v4.1-flash",
   "small_model": "opencode/mimo-v2.6-flash-free",
+  "provider": {
+    "9arm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "9arm Gateway",
+      "options": {
+        "baseURL": "https://gateway.9arm.co/v1",
+        "apiKey": "{env:NINEARM_API_KEY}"
+      },
+      "models": {
+        "qwen3.8-27b-fp8": {
+          "name": "Qwen3.8 27B FP8"
+        }
+      }
+    }
+  },
   "agent": {
     "build": {
       "model": "opencode-go/deepseek-v4.1-flash"
@@ -41,13 +59,10 @@
         ],
         "disabled": false
       },
-      "helium-devtools": {
+      "chrome-devtools": {
         "type": "local",
         "command": [
-          "/home/pyyupsk/.local/share/helium-devtools-mcp/node_modules/.bin/chrome-devtools-mcp",
-          "--autoConnect",
-          "--userDataDir",
-          "/mnt/c/Users/pthip/AppData/Local/imput/Helium/User Data",
+          "/home/pyyupsk/.local/bin/helium-devtools-mcp",
           "--no-usage-statistics",
           "--no-performance-crux"
         ],
