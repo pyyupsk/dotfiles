@@ -11,6 +11,7 @@ STEPS=(check packages stow system fonts wallpaper theme plasma kde apps)
 THEME_REPO=https://github.com/lestercorderomurillo/macos-tahoe-liquid-kde
 THEME_TAG=v0.61.8
 PCC_REPO=https://github.com/cesarconte/plasma-control-center
+PCC_COMMIT=3f48fc3  # the upstream commit this setup was built and tested on
 WALLPAPER_URL=https://media.512pixels.net/downloads/macos-wallpapers-6k/27-Golden-Gate-Dark.png
 SF_PRO_URL=https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg
 VSCODE_EXTENSIONS=(subframe7536.custom-ui-style miguelsolorio.symbols beardedbear.beardedtheme
@@ -105,6 +106,7 @@ step_plasma() {
     local src=~/.local/src/plasma-control-center
     if [[ ! -d $src ]]; then
       git clone "$PCC_REPO" "$src"
+      git -C "$src" reset -q --hard "$PCC_COMMIT"
       sed -i 's/"menu_new-symbolic"/"control-center-symbolic"/' "$src/src/qml/ExpanderArrow.qml"
       git -C "$src" commit -qam "use control-center-symbolic panel icon"
     fi

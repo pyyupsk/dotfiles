@@ -40,6 +40,7 @@ menu bar button uses the `control-center-symbolic` icon from `icons/`.
 ```sh
 git clone https://github.com/cesarconte/plasma-control-center ~/.local/src/plasma-control-center
 cd ~/.local/src/plasma-control-center
+git reset -q --hard 3f48fc3   # the upstream commit this setup was tested on
 sed -i 's/"menu_new-symbolic"/"control-center-symbolic"/' src/qml/ExpanderArrow.qml
 git commit -qam "use control-center-symbolic panel icon"
 
