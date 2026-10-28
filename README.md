@@ -10,9 +10,6 @@ symlinks every file inside into place.
 ```tree
 dotfiles/
 ├── README.md           this file
-├── shared/             package: shared — single-source docs (source/RTK.md,
-│                       source/STYLE.md); .claude/ links inward, opencode
-│                       reads source/ through `instructions`
 ├── zsh/                package: zsh
 │   ├── .zshrc          entry point: sources every file in ~/.zshrc.d
 │   ├── .zshrc.d/       one module per concern, numbered for load order
@@ -26,7 +23,7 @@ dotfiles/
 ├── ssh/
 │   └── .ssh/           ssh host shortcuts
 └── claude/             package: claude
-    └── .claude/        settings, style docs, statusline, hook
+    └── .claude/        settings, RTK.md + STYLE.md (opencode reads them too), statusline, hook
 ```
 
 ## zsh modules
@@ -67,16 +64,16 @@ mkdir -p ~/.claude && stow claude
 ```
 
 `--no-folding` keeps per-file links so machine state (sessions, credentials)
-never lands inside repo dirs. `shared` serves both tools, so stow it alongside:
+never lands inside repo dirs:
 
 ```sh
-stow --no-folding shared claude opencode
+stow --no-folding claude opencode
 ```
 
 ## opencode
 
 Ports `~/.config/opencode` personal config (`opencode.json`, rtk plugin).
-`instructions` in `opencode.json` loads `shared/source/RTK.md`, `STYLE.md`
+`instructions` in `opencode.json` loads `claude/.claude/RTK.md`, `STYLE.md`
 and the brain files directly, because opencode does not follow `@` imports.
 Excluded on purpose:
 
@@ -89,7 +86,7 @@ claude).
 ## Install
 
 ```sh
-stow zsh git mise opencode ssh shared   # create all symlinks
+stow zsh git mise opencode ssh   # create all symlinks
 mkdir -p ~/.claude && stow claude         # claude needs pre-existing dir
 ```
 

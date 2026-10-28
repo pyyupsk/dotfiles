@@ -1,8 +1,8 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "instructions": [
-    "~/dotfiles/shared/source/RTK.md",
-    "~/dotfiles/shared/source/STYLE.md",
+    "~/dotfiles/claude/.claude/RTK.md",
+    "~/dotfiles/claude/.claude/STYLE.md",
     "~/brain/AGENTS.md",
     "~/brain/now.md",
     "~/brain/dates.md"
