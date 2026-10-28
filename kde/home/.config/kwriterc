@@ -1,0 +1,16 @@
+[General]
+Days Meta Infos=30
+Save Meta Infos=true
+Show Full Path in Title=false
+Show Menu Bar=true
+Show Status Bar=true
+Show Tab Bar=true
+Show Url Nav Bar=false
+Show welcome view for new window=false
+
+[MainWindow]
+1920x1080 screen: Height=739
+1920x1080 screen: Width=1374
+
+[MainWindow][Toolbar mainToolBar]
+ToolButtonStyle=IconOnly

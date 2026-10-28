@@ -1,0 +1,8 @@
+[General]
+ColorScheme=MacTahoeLiquidKdeDark
+
+[Icons]
+Theme=MacTahoeLiquidKde-Icons-dark
+
+[KDE]
+widgetStyle=kvantum

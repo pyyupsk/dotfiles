@@ -1,0 +1,16 @@
+gtk-enable-event-sounds=1
+gtk-sound-theme-name="MacTahoeLiquidKde"
+gtk-font-name="SF Pro Text,  10"
+gtk-cursor-theme-name="MacTahoeLiquidKde-Dark"
+gtk-icon-theme-name="MacTahoeLiquidKde-Icons-Regular-Dark"
+gtk-enable-animations=1
+gtk-theme-name="MacTahoeLiquidKde-Dark"
+gtk-primary-button-warps-slider=1
+gtk-toolbar-style=0
+gtk-menu-images=1
+gtk-button-images=1
+gtk-cursor-blink-time=1000
+gtk-cursor-blink=1
+gtk-cursor-theme-size=24
+
+gtk-modules=appmenu-gtk-module

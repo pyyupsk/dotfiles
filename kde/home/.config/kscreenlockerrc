@@ -1,0 +1,6 @@
+[Daemon]
+Autolock=false
+Timeout=0
+
+[Greeter][Wallpaper][org.kde.image][General]
+Image=file:///home/pyyupsk/Pictures/Wallpapers/27-Golden-Gate-Dark.png

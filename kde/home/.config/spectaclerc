@@ -1,0 +1,10 @@
+[General]
+clipboardGroup=PostScreenshotCopyImage
+ocrLanguages=afr
+
+[ImageSave]
+lastImageSaveLocation=file:///tmp/kwrite.png
+translatedScreenshotsFolder=Screenshots
+
+[VideoSave]
+translatedScreencastsFolder=Screencasts

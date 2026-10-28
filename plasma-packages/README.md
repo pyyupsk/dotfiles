@@ -9,7 +9,6 @@ symlinks that point outside the package, and falls back to Breeze.
 | `kwin/scripts/mac-zoom` | Maximize keeps a 12 px gap. Restore and new windows open centered at 16:9 |
 | `kwin/scripts/dock-autohide` | On an empty desktop, the Dock stays visible. With a window open, it hides |
 | `kwin/effects/mac-zoom-anim` | Animates maximize and restore in both directions |
-| `kwin/kwinrulesrc` | Spotify, Vesktop, Helium and T3 Code open on desktops 1 to 4 |
 | `plasma/look-and-feel/com.pyyupsk.applesplash` | Login splash: Apple logo and progress bar |
 | `plasmoids/com.pyyupsk.notificationclock` | Menu bar clock that opens Notification Center |
 | `plasma-control-center/PKGBUILD` | Builds Control Center from `~/.local/src/plasma-control-center` |
@@ -21,7 +20,6 @@ cd ~/dotfiles/plasma-packages
 mkdir -p ~/.local/share/kwin ~/.local/share/plasma
 cp -r kwin/scripts kwin/effects ~/.local/share/kwin/
 cp -r plasma/look-and-feel plasmoids ~/.local/share/plasma/
-cp kwin/kwinrulesrc ~/.config/
 
 kwriteconfig6 --file kwinrc --group Plugins --key mac-zoomEnabled true
 kwriteconfig6 --file kwinrc --group Plugins --key dock-autohideEnabled true
@@ -31,9 +29,8 @@ kwriteconfig6 --file ksplashrc --group KSplash --key Theme com.pyyupsk.applespla
 qdbus6 org.kde.KWin /KWin reconfigure
 ```
 
-The desktop IDs in `kwinrulesrc` belong to this machine. On a new install,
-copy the IDs from `~/.config/kwinrc` (`[Desktops]`, `Id_1` to `Id_4`) into
-each rule.
+The window rules (Spotify, Vesktop, Helium and T3 Code on desktops 1 to 4)
+live in `kde/`, together with the `kwinrc` that holds the desktop IDs they use.
 
 ## Control Center
 
