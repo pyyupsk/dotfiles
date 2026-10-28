@@ -1,0 +1,12 @@
+[SddmGreeterTheme]
+Name=Golden Gate
+Description=macOS 27 style login screen
+Author=pyyupsk
+License=MIT
+Type=sddm-theme
+Version=1.0
+MainScript=Main.qml
+ConfigFile=theme.conf
+Theme-Id=GoldenGate
+Theme-API=2.0
+QtVersion=6
