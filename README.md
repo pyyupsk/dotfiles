@@ -21,8 +21,6 @@ dotfiles/
 │   └── .gitconfig      git identity, SSH signing, pager
 ├── mise/
 │   └── .config/mise/   global tool versions (node, python, rust)
-├── nvim/
-│   └── .config/nvim/   neovim (LazyVim) config
 ├── opencode/            package: opencode
 │   └── .config/opencode/  config, theme, plugin, skill (no binary/locks)
 ├── ssh/
@@ -103,7 +101,7 @@ whitelist refreshes show as repo diffs — commit them as chores.
 ## Install
 
 ```sh
-stow zsh git mise nvim opencode ssh bin shared   # create all symlinks
+stow zsh git mise opencode ssh bin shared   # create all symlinks
 mkdir -p ~/.claude && stow claude         # claude needs pre-existing dir
 ```
 
