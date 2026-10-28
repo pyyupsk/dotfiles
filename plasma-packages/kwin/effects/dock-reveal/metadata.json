@@ -1,0 +1,14 @@
+{
+    "KPackageStructure": "KWin/Effect",
+    "KPlugin": {
+        "Authors": [{ "Name": "pyyupsk" }],
+        "Category": "Appearance",
+        "Description": "Slides the Dock up when it appears after a desktop switch. The Dock Autohide script changes the panel mode there, which shows the Dock with no animation.",
+        "EnabledByDefault": false,
+        "Id": "dock-reveal",
+        "License": "MIT",
+        "Name": "Dock Reveal"
+    },
+    "X-KDE-Ordering": 60,
+    "X-Plasma-API": "javascript"
+}

@@ -9,6 +9,7 @@ symlinks that point outside the package, and falls back to Breeze.
 | `kwin/scripts/mac-zoom`                        | Maximize keeps a 12 px gap. Restore and new windows open centered at 16:9 |
 | `kwin/scripts/dock-autohide`                   | On an empty desktop, the Dock stays visible. With a window open, it hides |
 | `kwin/effects/mac-zoom-anim`                   | Animates maximize and restore in both directions                          |
+| `kwin/effects/dock-reveal`                     | Slides the Dock up when it appears after a desktop switch                 |
 | `kwin/scripts/pip-sticky`                      | Picture-in-picture windows show on every desktop                          |
 | `plasma/look-and-feel/com.pyyupsk.applesplash` | Login splash: Apple logo and progress bar                                 |
 | `plasmoids/com.pyyupsk.notificationclock`      | Menu bar clock that opens Notification Center                             |
@@ -27,6 +28,7 @@ kwriteconfig6 --file kwinrc --group Plugins --key mac-zoomEnabled true
 kwriteconfig6 --file kwinrc --group Plugins --key dock-autohideEnabled true
 kwriteconfig6 --file kwinrc --group Plugins --key pip-stickyEnabled true
 kwriteconfig6 --file kwinrc --group Plugins --key mac-zoom-animEnabled true
+kwriteconfig6 --file kwinrc --group Plugins --key dock-revealEnabled true
 kwriteconfig6 --file kwinrc --group Plugins --key maximizeEnabled false
 kwriteconfig6 --file ksplashrc --group KSplash --key Theme com.pyyupsk.applesplash
 qdbus6 org.kde.KWin /KWin reconfigure

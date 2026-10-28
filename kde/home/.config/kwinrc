@@ -57,6 +57,7 @@ SlideBackground=false
 [Plugins]
 blurEnabled=false
 dock-autohideEnabled=true
+dock-revealEnabled=true
 glassEnabled=false
 liquidglassEnabled=true
 mac-zoom-animEnabled=true
