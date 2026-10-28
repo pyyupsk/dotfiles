@@ -4,14 +4,14 @@ KDE add-ons that give the desktop its macOS 27 behavior. Copy them into
 `~/.local/share`. Do not stow them: KDE ignores a package whose files are
 symlinks that point outside the package, and falls back to Breeze.
 
-| Folder | What it does |
-| ------ | ------------ |
-| `kwin/scripts/mac-zoom` | Maximize keeps a 12 px gap. Restore and new windows open centered at 16:9 |
-| `kwin/scripts/dock-autohide` | On an empty desktop, the Dock stays visible. With a window open, it hides |
-| `kwin/effects/mac-zoom-anim` | Animates maximize and restore in both directions |
-| `plasma/look-and-feel/com.pyyupsk.applesplash` | Login splash: Apple logo and progress bar |
-| `plasmoids/com.pyyupsk.notificationclock` | Menu bar clock that opens Notification Center |
-| `plasma-control-center/PKGBUILD` | Builds Control Center from `~/.local/src/plasma-control-center` |
+| Folder                                         | What it does                                                              |
+| ---------------------------------------------- | ------------------------------------------------------------------------- |
+| `kwin/scripts/mac-zoom`                        | Maximize keeps a 12 px gap. Restore and new windows open centered at 16:9 |
+| `kwin/scripts/dock-autohide`                   | On an empty desktop, the Dock stays visible. With a window open, it hides |
+| `kwin/effects/mac-zoom-anim`                   | Animates maximize and restore in both directions                          |
+| `plasma/look-and-feel/com.pyyupsk.applesplash` | Login splash: Apple logo and progress bar                                 |
+| `plasmoids/com.pyyupsk.notificationclock`      | Menu bar clock that opens Notification Center                             |
+| `plasma-control-center/PKGBUILD`               | Builds Control Center from `~/.local/src/plasma-control-center`           |
 
 ## Install
 
