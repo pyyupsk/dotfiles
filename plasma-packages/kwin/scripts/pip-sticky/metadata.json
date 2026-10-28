@@ -1,0 +1,13 @@
+{
+    "KPackageStructure": "KWin/Script",
+    "KPlugin": {
+        "Authors": [{ "Name": "pyyupsk" }],
+        "Description": "Picture-in-picture windows show on every virtual desktop",
+        "EnabledByDefault": true,
+        "Id": "pip-sticky",
+        "License": "GPL-3.0",
+        "Name": "PiP Sticky"
+    },
+    "X-Plasma-API": "javascript",
+    "X-Plasma-MainScript": "code/main.js"
+}

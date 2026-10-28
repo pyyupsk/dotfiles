@@ -9,11 +9,9 @@ wmclass=helium
 wmclassmatch=1
 
 [pip]
-Description=Picture in picture stays on top, on every desktop
+Description=Picture in picture stays on top
 above=true
 aboverule=2
-desktops=
-desktopsrule=2
 skipswitcher=true
 skipswitcherrule=2
 skiptaskbar=true

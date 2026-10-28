@@ -63,6 +63,7 @@ mac-zoom-animEnabled=true
 mac-zoomEnabled=true
 magiclampEnabled=true
 maximizeEnabled=false
+pip-stickyEnabled=true
 shapecornersEnabled=true
 squashEnabled=false
 

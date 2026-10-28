@@ -30,14 +30,15 @@ This page lists each part of the macOS 27 look and the file that controls it. Us
 
 ## Windows
 
-| Behavior                                                     | File                                                |
-| ------------------------------------------------------------ | --------------------------------------------------- |
-| Maximize keeps a 12 px gap and round corners                 | `plasma-packages/kwin/scripts/mac-zoom/`            |
-| New windows and restored windows open at 16:9 in the center  | `plasma-packages/kwin/scripts/mac-zoom/`            |
-| Maximize and restore animate in both directions              | `plasma-packages/kwin/effects/mac-zoom-anim/`       |
-| During a desktop switch, the wallpaper stays still           | `kde/home/.config/kwinrc` (`SlideBackground=false`) |
-| Spotify, Vesktop, Helium and T3 Code open on desktops 1 to 4 | `kde/home/.config/kwinrulesrc`                      |
-| Alt+Tab shows big icons                                      | `kde/home/.config/kwinrc` (`[TabBox]`)              |
+| Behavior                                                                    | File                                                                                 |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Maximize keeps a 12 px gap and round corners                                | `plasma-packages/kwin/scripts/mac-zoom/`                                             |
+| New windows and restored windows open at 16:9 in the center                 | `plasma-packages/kwin/scripts/mac-zoom/`                                             |
+| Maximize and restore animate in both directions                             | `plasma-packages/kwin/effects/mac-zoom-anim/`                                        |
+| During a desktop switch, the wallpaper stays still                          | `kde/home/.config/kwinrc` (`SlideBackground=false`)                                  |
+| Spotify, Vesktop, Helium and T3 Code open on desktops 1 to 4                | `kde/home/.config/kwinrulesrc`                                                       |
+| Alt+Tab shows big icons                                                     | `kde/home/.config/kwinrc` (`[TabBox]`)                                               |
+| Picture in picture (Instagram calls) stays on top and follows every desktop | `kde/home/.config/kwinrulesrc` (`[pip]`), `plasma-packages/kwin/scripts/pip-sticky/` |
 
 The mac-zoom script never resizes KWin's own windows, such as the Alt+Tab switcher. Resizing them crashes KWin 6.8.1 (KDE bug 527269).
 
