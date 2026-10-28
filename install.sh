@@ -162,6 +162,9 @@ step_apps() {
     chmod +x ~/Applications/T3-Code.AppImage
   fi
 
+  say "Roblox (Sober)"
+  flatpak install -y --noninteractive flathub org.vinegarhq.Sober
+
   say "Spicetify (Spotify must have been opened and logged in once)"
   pause "Open Spotify, log in, then close it."
   sudo chmod a+wr /opt/spotify /opt/spotify/Apps -R

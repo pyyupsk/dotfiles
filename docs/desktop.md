@@ -47,24 +47,25 @@ The mac-zoom script never resizes KWin's own windows, such as the Alt+Tab switch
 
 All shortcuts are in `kde/home/.config/kglobalshortcutsrc`, except the launcher.
 
-| Keys             | Action                                                 |
-| ---------------- | ------------------------------------------------------ |
-| Alt+Space        | Launchpad (the launcher shortcut is in the panel file) |
-| Alt+F2           | KRunner                                                |
-| F3, Ctrl+Up      | Mission Control (Overview)                             |
-| Ctrl+Down        | App windows (App Exposé)                               |
-| Alt+A, Alt+S     | Desktop to the left, desktop to the right              |
-| Alt+1 to Alt+4   | Go to desktop 1 to 4                                   |
-| Ctrl+Alt+F       | Maximize                                               |
-| Alt+M            | Minimize                                               |
-| Alt+F            | Full screen                                            |
-| Alt+Q, Alt+W     | Close window                                           |
-| Alt+Return       | Alacritty                                              |
-| Alt+B            | Helium                                                 |
-| Alt+E            | Dolphin                                                |
-| Print            | Screenshot of the full screen, copied to the clipboard |
-| Meta+Shift+S     | Screenshot of an area                                  |
-| Ctrl+Shift+Space | 1Password                                              |
+| Keys                     | Action                                                                                             |
+| ------------------------ | -------------------------------------------------------------------------------------------------- |
+| Alt+Space                | Launchpad (the launcher shortcut is in the panel file)                                             |
+| Alt+F2                   | KRunner                                                                                            |
+| F3, Ctrl+Up              | Mission Control (Overview)                                                                         |
+| Ctrl+Down                | App windows (App Exposé)                                                                           |
+| Alt+A, Alt+S             | Desktop to the left, desktop to the right                                                          |
+| Alt+1 to Alt+4           | Go to desktop 1 to 4                                                                               |
+| Ctrl+Alt+1 to Ctrl+Alt+9 | Move the window to that desktop and go there with it (`plasma-packages/kwin/scripts/move-follow/`) |
+| Ctrl+Alt+F               | Maximize                                                                                           |
+| Alt+M                    | Minimize                                                                                           |
+| Alt+F                    | Full screen                                                                                        |
+| Alt+Q, Alt+W             | Close window                                                                                       |
+| Alt+Return               | Alacritty                                                                                          |
+| Alt+B                    | Helium                                                                                             |
+| Alt+E                    | Dolphin                                                                                            |
+| Print                    | Screenshot of the full screen, copied to the clipboard                                             |
+| Meta+Shift+S             | Screenshot of an area                                                                              |
+| Ctrl+Shift+Space         | 1Password                                                                                          |
 
 ## Apps
 

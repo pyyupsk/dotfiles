@@ -1,0 +1,13 @@
+{
+    "KPackageStructure": "KWin/Script",
+    "KPlugin": {
+        "Authors": [{ "Name": "pyyupsk" }],
+        "Description": "Ctrl+Alt+1 to 9 moves the active window to that desktop and switches there with it",
+        "EnabledByDefault": true,
+        "Id": "move-follow",
+        "License": "GPL-3.0",
+        "Name": "Move Window and Follow"
+    },
+    "X-Plasma-API": "javascript",
+    "X-Plasma-MainScript": "code/main.js"
+}

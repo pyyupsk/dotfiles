@@ -109,7 +109,7 @@ immutability=1
 plugin=com.pyyupsk.notificationclock
 
 [Containments][183][Applets][228][Configuration]
-popupHeight=155
+popupHeight=352
 popupWidth=350
 
 [Containments][183][General]

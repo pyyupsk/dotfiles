@@ -6,9 +6,12 @@ base
 base-devel
 bat
 breeze-gtk
+docker
+docker-compose
 dolphin
 efibootmgr
 eza
+flatpak
 fzf
 git
 gwenview
