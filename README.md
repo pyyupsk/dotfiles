@@ -26,7 +26,7 @@ dotfiles/
 ├── ssh/
 │   └── .ssh/           ssh host shortcuts
 └── claude/             package: claude
-    └── .claude/        settings, style docs, agents, commands, hooks
+    └── .claude/        settings, style docs, statusline, hook
 ```
 
 ## zsh modules
@@ -54,12 +54,9 @@ from there.
 
 ## claude
 
-Ports `~/.claude` personal config (settings, `STYLE.md`/`RTK.md`, agents,
-commands, statusline, one hook). Excluded on purpose:
+Ports `~/.claude` personal config (settings, `STYLE.md`/`RTK.md`,
+statusline, one hook). Excluded on purpose:
 
-- `skills/` — symlinks into `~/.agents/skills`, separate system.
-  Real dirs (`impeccable-claude`, `lurker`, `codebase-onboarding`) also live
-  there, symlinked back; plugin-synced `synced/` stays put
 - `settings.json:autoMode` — machine-generated session state, rebuilds itself
 - everything else under `~/.claude` — sessions, credentials, caches
 
