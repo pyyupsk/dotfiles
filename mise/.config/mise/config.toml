@@ -1,6 +1,6 @@
 [tools]
 bun = "latest"
 deno = "latest"
-node = "latest"
-rust = "latest"
+node = "lts"
+rust = "stable"
 uv = "latest"
