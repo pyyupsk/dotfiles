@@ -1,7 +1,6 @@
-# Template for ~/.zshrc.local (machine-private, never commit).
-# Copy to ~/.zshrc.local and chmod 600, then fill in real values.
-export LYNX_AI_KEY="..."
+# Copy to ~/.zshrc.local, chmod 600. Never commit.
+export AI_GATEWAY_KEY="..."
 export ANTHROPIC_BASE_URL="https://YOUR-HOST"
-export ANTHROPIC_AUTH_TOKEN="$LYNX_AI_KEY"
+export ANTHROPIC_AUTH_TOKEN="$AI_GATEWAY_KEY"
 export OPENAI_BASE_URL="https://YOUR-HOST/v1"
-export OPENAI_API_KEY="$LYNX_AI_KEY"
+export OPENAI_API_KEY="$AI_GATEWAY_KEY"

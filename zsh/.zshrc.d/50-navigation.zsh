@@ -1,9 +1,7 @@
-# 50-navigation.zsh - cd aliases and zoxide
-# zoxide (smarter cd)
-eval "$(zoxide init zsh)"
-alias cd='z'
-
-# cd navigation
+if command -v zoxide >/dev/null; then
+  eval "$(zoxide init zsh)"
+  alias cd='z'
+fi
 alias ..='cd ..'
 alias ..2='cd ../..'
 alias ..3='cd ../../..'

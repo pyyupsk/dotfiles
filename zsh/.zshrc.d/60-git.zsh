@@ -1,4 +1,3 @@
-# 60-git.zsh - git aliases
 alias g='git status'
 alias ga='git add'
 alias gaa='git add --all'

@@ -1,13 +1,6 @@
-# 40-aliases.zsh - general tool aliases
-# eza (ls replacement)
-alias ls='eza --icons'
-alias ll='eza -la --icons'
-alias l='eza -la --icons'
-alias tree='eza --tree --icons'
-
-# bat (cat replacement)
-alias cat='bat'
-
-# clear
+alias ls='eza --icons=auto'
+alias ll='eza -la --icons=auto'
+alias l='eza -la --icons=auto'
+alias tree='eza --tree --icons=auto'
+alias cat='bat --paging=never'
 alias c='clear'
-alias cc='claude'
