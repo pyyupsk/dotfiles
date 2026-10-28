@@ -66,8 +66,9 @@ step_fonts() {
   local tmp; tmp=$(mktemp -d)
   curl -fL -o "$tmp/SF-Pro.dmg" "$SF_PRO_URL"
   7z x -y -o"$tmp/dmg" "$tmp/SF-Pro.dmg" >/dev/null
-  7z x -y -o"$tmp/pkg" "$tmp/dmg/SF-Pro/SFProFonts.pkg" >/dev/null
-  mkdir -p "$tmp/out" && (cd "$tmp/out" && 7z x -so "$tmp/pkg/SFProFontsPackage.pkg/Payload" | cpio -id --quiet)
+  7z x -y -o"$tmp/pkg" "$(find "$tmp/dmg" -maxdepth 2 -name '*.pkg' | head -1)" >/dev/null
+  mkdir -p "$tmp/out"
+  (cd "$tmp/out" && 7z x -so "$(find "$tmp/pkg" -name Payload | head -1)" | cpio -id --quiet)
   sudo mkdir -p "$dir"
   find "$tmp/out" \( -name 'SF-Pro-Text-*.otf' -o -name 'SF-Pro-Display-*.otf' -o -name 'SF-Pro-Rounded-*.otf' \) \
     -exec sudo cp {} "$dir/" \;
@@ -122,7 +123,6 @@ step_kde() {
 step_apps() {
   say "Developer tools"
   mise install
-  command -v uv >/dev/null || mise use -g uv
   mise exec -- uv tool install -p 3.13 serena-agent 2>/dev/null || true
   command -v claude >/dev/null || curl -fsSL https://claude.ai/install.sh | bash
   ~/.local/bin/claude mcp get serena >/dev/null 2>&1 ||
