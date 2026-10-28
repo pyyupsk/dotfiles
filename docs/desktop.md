@@ -25,7 +25,7 @@ This page lists each part of the macOS 27 look and the file that controls it. Us
 | Clock that opens Notification Center                                     | `plasma-packages/plasmoids/com.pyyupsk.notificationclock/`  |
 | On an empty desktop the Dock shows. With a window open, it hides         | `plasma-packages/kwin/scripts/dock-autohide/`               |
 | Dock apps: Dolphin, Helium, T3 Code, Vesktop, Alacritty                  | `kde/home/.config/plasma-org.kde.plasma.desktop-appletsrc`  |
-| Launchpad hides developer tools                                          | `applications/`                                             |
+| Launchpad hides developer tools                                          | `kde/hidden-apps.txt`                                             |
 
 ## Windows
 

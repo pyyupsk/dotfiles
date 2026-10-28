@@ -38,9 +38,9 @@ step_packages() {
 
 step_stow() {
   say "Link dotfiles into \$HOME"
-  mkdir -p ~/.claude ~/.config/opencode ~/.local/share/applications ~/.local/share/icons
+  mkdir -p ~/.claude ~/.config/opencode ~/.local/share/icons
   (cd "$DOT" && stow --no-folding zsh git mise opencode ssh claude alacritty \
-    applications icons fontconfig vscode)
+    icons fontconfig vscode)
   [[ -f ~/.zshrc.local ]] || install -m 600 "$DOT/zsh/.zshrc.local.example" ~/.zshrc.local
   [[ "$(getent passwd "$USER" | cut -d: -f7)" == /usr/bin/zsh ]] || chsh -s /usr/bin/zsh
 }
@@ -100,6 +100,7 @@ step_plasma() {
   mkdir -p ~/.local/share/kwin ~/.local/share/plasma
   cp -r "$pp/kwin/scripts" "$pp/kwin/effects" ~/.local/share/kwin/
   cp -r "$pp/plasma/look-and-feel" "$pp/plasmoids" ~/.local/share/plasma/
+  hide_apps
 
   if ! pacman -Q plasma-control-center-git >/dev/null 2>&1; then
     say "Build Control Center"
@@ -115,6 +116,19 @@ step_plasma() {
     (cd "$tmp" && makepkg -si --noconfirm)
     rm -rf "$tmp"
   fi
+}
+
+# A full copy with NoDisplay=true hides the app from Launchpad but keeps its
+# name, icon and Exec for "Open With".
+hide_apps() {
+  local name src
+  mkdir -p ~/.local/share/applications
+  grep -v -e '^#' -e '^$' "$DOT/kde/hidden-apps.txt" | while read -r name; do
+    src=/usr/share/applications/$name
+    [[ -f $src ]] || continue
+    sed '/^NoDisplay=/d; 0,/^\[Desktop Entry\]/s//[Desktop Entry]\nNoDisplay=true/' "$src" \
+      > ~/.local/share/applications/"$name"
+  done
 }
 
 step_kde() {
@@ -168,7 +182,14 @@ step_check() {
   no_missing_packages() { ! pacman -T $(cat "$DOT"/packages/*.txt) | grep -q .; }
   stow_clean() {
     (cd "$DOT" && stow -n -v --no-folding zsh git mise opencode ssh claude alacritty \
-      applications icons fontconfig vscode 2>&1) | grep -qv -e '^WARNING' -e '^$' && return 1 || return 0
+      icons fontconfig vscode 2>&1) | grep -qv -e '^WARNING' -e '^$' && return 1 || return 0
+  }
+  apps_hidden() {
+    local name
+    for name in $(grep -v -e '^#' -e '^$' "$DOT/kde/hidden-apps.txt"); do
+      [[ -f /usr/share/applications/$name ]] || continue
+      grep -q '^NoDisplay=true' ~/.local/share/applications/"$name" || return 1
+    done
   }
   has_apps() {
     command -v claude && command -v serena && command -v spicetify &&
@@ -188,6 +209,7 @@ step_check() {
   mark "splash and widgets"      same_tree "$DOT/plasma-packages/plasma" ~/.local/share/plasma
   mark "notification clock"      same_tree "$DOT/plasma-packages/plasmoids" ~/.local/share/plasma/plasmoids
   mark "Control Center"          pacman -Q plasma-control-center-git
+  mark "hidden apps"             apps_hidden
   mark "kde settings"            same_tree "$DOT/kde/home" "$HOME"
   mark "apps"                    has_apps
 }

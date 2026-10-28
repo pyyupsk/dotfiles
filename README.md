@@ -9,24 +9,23 @@ Configuration for an Arch Linux machine with KDE Plasma 6 that looks and works l
 
 Folders of three kinds live here. Stow packages are linked into `$HOME`. Copied folders are copied by `install.sh`, because KDE or the system cannot use symlinks for them. The rest are lists and docs.
 
-| Folder             | Kind             | Holds                                                                            |
-| ------------------ | ---------------- | -------------------------------------------------------------------------------- |
-| `zsh/`             | stow             | `.zshrc`, modules in `.zshrc.d/`, powerlevel10k prompt                           |
-| `git/`             | stow             | `.gitconfig`: identity, SSH signing, pager                                       |
-| `ssh/`             | stow             | `.ssh/config` for GitHub                                                         |
-| `mise/`            | stow             | Global tool versions: bun, deno, node LTS, rust stable, uv                       |
-| `alacritty/`       | stow             | Terminal look, Shift+Enter for Claude Code                                       |
-| `fontconfig/`      | stow             | SF Pro for the UI, Noto Sans Thai for Thai                                       |
-| `vscode/`          | stow             | VS Code configuration and keybindings                                            |
-| `claude/`          | stow             | Claude Code configuration, hooks, statusline, `RTK.md`, `STYLE.md`               |
-| `opencode/`        | stow             | opencode configuration and rtk plugin                                            |
-| `applications/`    | stow             | Hides developer tools from Launchpad                                             |
-| `icons/`           | stow             | Control Center menu bar icon                                                     |
-| `kde/`             | copied           | Snapshot of the KDE configuration, with `save.sh` and `apply.sh`                 |
-| `plasma-packages/` | copied           | KWin scripts, KWin effect, login splash, menu bar clock, Control Center PKGBUILD |
-| `system/`          | copied with sudo | Boot splash configuration and the SDDM login screen                              |
-| `packages/`        | list             | Packages from the Arch repos and the AUR                                         |
-| `docs/`            | docs             | Install guide and desktop reference                                              |
+| Folder             | Kind             | Holds                                                                                                        |
+| ------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------ |
+| `zsh/`             | stow             | `.zshrc`, modules in `.zshrc.d/`, powerlevel10k prompt                                                       |
+| `git/`             | stow             | `.gitconfig`: identity, SSH signing, pager                                                                   |
+| `ssh/`             | stow             | `.ssh/config` for GitHub                                                                                     |
+| `mise/`            | stow             | Global tool versions: bun, deno, node LTS, rust stable, uv                                                   |
+| `alacritty/`       | stow             | Terminal look, Shift+Enter for Claude Code                                                                   |
+| `fontconfig/`      | stow             | SF Pro for the UI, Noto Sans Thai for Thai                                                                   |
+| `vscode/`          | stow             | VS Code configuration and keybindings                                                                        |
+| `claude/`          | stow             | Claude Code configuration, hooks, statusline, `RTK.md`, `STYLE.md`                                           |
+| `opencode/`        | stow             | opencode configuration and rtk plugin                                                                        |
+| `icons/`           | stow             | Control Center menu bar icon                                                                                 |
+| `kde/`             | copied           | Snapshot of the KDE configuration, `save.sh`, `apply.sh`, and `hidden-apps.txt` (apps hidden from Launchpad) |
+| `plasma-packages/` | copied           | KWin scripts, KWin effect, login splash, menu bar clock, Control Center PKGBUILD                             |
+| `system/`          | copied with sudo | Boot splash configuration and the SDDM login screen                                                          |
+| `packages/`        | list             | Packages from the Arch repos and the AUR                                                                     |
+| `docs/`            | docs             | Install guide and desktop reference                                                                          |
 
 ## install.sh
 

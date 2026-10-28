@@ -53,7 +53,6 @@ video/x-theora+ogg=org.kde.haruna.desktop;
 [Default Applications]
 application/json=com.microsoft.VSCode.desktop
 application/x-docbook+xml=org.kde.kwrite.desktop;
-application/x-gnome-saved-search=org.gnome.Nautilus.desktop
 application/x-yaml=com.microsoft.VSCode.desktop
 audio/aac=org.kde.haruna.desktop;
 audio/mp4=org.kde.haruna.desktop;
@@ -76,7 +75,7 @@ audio/x-wav=org.kde.haruna.desktop;
 image/jpeg=org.kde.gwenview.desktop;
 image/png=org.kde.gwenview.desktop;
 image/webp=org.kde.gwenview.desktop;
-inode/directory=org.gnome.Nautilus.desktop
+inode/directory=org.kde.dolphin.desktop
 text/html=com.microsoft.VSCode.desktop
 text/markdown=com.microsoft.VSCode.desktop
 text/plain=org.kde.kwrite.desktop;

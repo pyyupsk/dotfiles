@@ -1,0 +1,13 @@
+# Apps hidden from Launchpad. install.sh copies each system .desktop file
+# into ~/.local/share/applications and adds NoDisplay=true.
+assistant.desktop
+designer.desktop
+kvantummanager.desktop
+linguist.desktop
+lstopo.desktop
+org.kde.kate.desktop
+org.kde.kmenuedit.desktop
+qdbusviewer.desktop
+qv4l2.desktop
+qvidcap.desktop
+vim.desktop
