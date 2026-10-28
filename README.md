@@ -1,101 +1,82 @@
 # Dotfiles
 
-Personal configuration, organized by tool and managed with [GNU Stow](https://www.gnu.org/software/stow/).
+Configuration for an Arch Linux machine with KDE Plasma 6 that looks and works like macOS 27 Golden Gate, dark mode only.
+
+- To set up a new machine, read [docs/install.md](docs/install.md).
+- To learn which file controls which part of the desktop, read [docs/desktop.md](docs/desktop.md).
 
 ## Layout
 
-Each package directory mirrors your `$HOME` layout exactly. Running `stow <pkg>`
-symlinks every file inside into place.
+Folders of three kinds live here. Stow packages are linked into `$HOME`. Copied folders are copied by `install.sh`, because KDE or the system cannot use symlinks for them. The rest are lists and docs.
 
-```tree
-dotfiles/
-├── README.md           this file
-├── zsh/                package: zsh
-│   ├── .zshrc          entry point: sources every file in ~/.zshrc.d
-│   ├── .zshrc.d/       one module per concern, numbered for load order
-│   └── .p10k.zsh       powerlevel10k config
-├── git/
-│   └── .gitconfig      git identity, SSH signing, pager
-├── mise/
-│   └── .config/mise/   global tool versions (node, python, rust)
-├── opencode/            package: opencode
-│   └── .config/opencode/  config, rtk plugin (no binary/locks)
-├── ssh/
-│   └── .ssh/           ssh host shortcuts
-└── claude/             package: claude
-    └── .claude/        settings, RTK.md + STYLE.md (opencode reads them too), statusline, hook
+| Folder             | Kind             | Holds                                                                            |
+| ------------------ | ---------------- | -------------------------------------------------------------------------------- |
+| `zsh/`             | stow             | `.zshrc`, modules in `.zshrc.d/`, powerlevel10k prompt                           |
+| `git/`             | stow             | `.gitconfig`: identity, SSH signing, pager                                       |
+| `ssh/`             | stow             | `.ssh/config` for GitHub                                                         |
+| `mise/`            | stow             | Global tool versions: bun, deno, node LTS, rust stable, uv                       |
+| `alacritty/`       | stow             | Terminal look, Shift+Enter for Claude Code                                       |
+| `fontconfig/`      | stow             | SF Pro for the UI, Noto Sans Thai for Thai                                       |
+| `vscode/`          | stow             | VS Code configuration and keybindings                                            |
+| `claude/`          | stow             | Claude Code configuration, hooks, statusline, `RTK.md`, `STYLE.md`               |
+| `opencode/`        | stow             | opencode configuration and rtk plugin                                            |
+| `applications/`    | stow             | Hides developer tools from Launchpad                                             |
+| `icons/`           | stow             | Control Center menu bar icon                                                     |
+| `kde/`             | copied           | Snapshot of the KDE configuration, with `save.sh` and `apply.sh`                 |
+| `plasma-packages/` | copied           | KWin scripts, KWin effect, login splash, menu bar clock, Control Center PKGBUILD |
+| `system/`          | copied with sudo | Boot splash configuration and the SDDM login screen                              |
+| `packages/`        | list             | Packages from the Arch repos and the AUR                                         |
+| `docs/`            | docs             | Install guide and desktop reference                                              |
+
+## install.sh
+
+```sh
+./install.sh            # show the steps and the three phases
+./install.sh check      # report what still differs from this repo; changes nothing
+./install.sh fonts      # run one step; every step is safe to run again
 ```
+
+The steps are `packages`, `stow`, `system`, `fonts`, `wallpaper`, `theme`, `plasma`, `kde` and `apps`. [docs/install.md](docs/install.md) gives the order.
+
+## Stow
+
+The packages use `--no-folding`, so stow links each file and never a whole folder. Apps then keep their own state (sessions, caches, credentials) outside this repo.
+
+```sh
+stow --no-folding zsh      # link one package
+stow -D zsh                # remove its links
+stow -n -v --no-folding zsh   # dry run
+```
+
+## Secrets
+
+Secrets never go into this repo.
+
+- `~/.zshrc.local` holds the AI gateway URL and key. It loads at the end of `.zshrc`. The template is `zsh/.zshrc.local.example`. Keep the file at mode 600.
+- `.gitignore` blocks SSH keys, `.pem` and `.key` files and `.zshrc.local`.
+- Before you commit a new `kde/save.sh` snapshot, read the diff for secrets.
 
 ## zsh modules
 
-| File                | Purpose                                |
-| ------------------- | -------------------------------------- |
-| `10-env.zsh`        | PATH, locale, Node options             |
-| `15-history.zsh`    | command history options                |
-| `20-mise.zsh`       | mise version manager integration       |
-| `25-bun.zsh`        | bun runtime + completions              |
-| `30-plugins.zsh`    | completions, autosuggestions, fzf      |
-| `40-aliases.zsh`    | ls/cat/clear replacements (eza, bat)   |
-| `50-navigation.zsh` | cd aliases + zoxide                    |
-| `60-git.zsh`        | git command aliases                    |
-| `70-ai.zsh`         | AI env (non-secret) + oc aliases       |
-| `80-prompt.zsh`     | powerlevel10k theme                    |
-| `90-syntax.zsh`     | syntax highlighting (must load last)   |
+Files in `zsh/.zshrc.d/` load in name order.
 
-## Local secrets
+| File                | Purpose                                           |
+| ------------------- | ------------------------------------------------- |
+| `10-env.zsh`        | PATH, BROWSER                                     |
+| `15-history.zsh`    | History options                                   |
+| `20-mise.zsh`       | mise activation                                   |
+| `25-bun.zsh`        | bun PATH and completions                          |
+| `30-plugins.zsh`    | Completions, autosuggestions, fzf                 |
+| `40-aliases.zsh`    | eza and bat in place of ls and cat                |
+| `50-navigation.zsh` | zoxide and cd aliases                             |
+| `60-git.zsh`        | git aliases                                       |
+| `70-ai.zsh`         | opencode PATH, `cc` for claude, `oc` for opencode |
+| `80-prompt.zsh`     | powerlevel10k                                     |
+| `85-p10k-theme.zsh` | macOS colors for the prompt                       |
+| `90-syntax.zsh`     | Syntax highlighting in macOS colors (loads last)  |
 
-Machine-private values live outside repo in `~/.zshrc.local` (chmod 600),
-sourced at end of `.zshrc`. Template: `zsh/.zshrc.local.example`.
-Claude Code and OpenAI-compatible tools read the AI gateway URL and key
-from there.
+## claude and opencode
 
-## claude
+Both tools read the same rules: `claude/.claude/RTK.md` and `STYLE.md`. Claude reads them through `@` imports in `CLAUDE.md`. opencode does not follow `@` imports, so `instructions` in `opencode.json` lists the files.
 
-Ports `~/.claude` personal config (settings, `STYLE.md`/`RTK.md`,
-statusline, one hook). Excluded on purpose:
-
-- `settings.json:autoMode` — machine-generated session state, rebuilds itself
-- everything else under `~/.claude` — sessions, credentials, caches
-
-`~/.claude` must pre-exist so stow links per-file (state stays out of repo):
-
-```sh
-mkdir -p ~/.claude && stow claude
-```
-
-`--no-folding` keeps per-file links so machine state (sessions, credentials)
-never lands inside repo dirs:
-
-```sh
-stow --no-folding claude opencode
-```
-
-## opencode
-
-Ports `~/.config/opencode` personal config (`opencode.json`, rtk plugin).
-`instructions` in `opencode.json` loads `claude/.claude/RTK.md`, `STYLE.md`
-and the brain files directly, because opencode does not follow `@` imports.
-Excluded on purpose:
-
-- `bun.lock`, `package-lock.json`, `node_modules` — reinstallable
-- `cli.json`, `service.json` (holds password), backups — machine state
-
-Notes: `~/.config/opencode` must pre-exist before stow (same folding trap as
-claude).
-
-## Install
-
-```sh
-stow zsh git mise opencode ssh   # create all symlinks
-mkdir -p ~/.claude && stow claude         # claude needs pre-existing dir
-```
-
-### Common stow commands
-
-```sh
-stow zsh            # install one package
-stow -D zsh         # remove a package's symlinks
-stow --adopt zsh    # overwrite existing files with package version
-stow -n zsh         # dry run
-stow -t ~ -d ~/dotfiles zsh  # explicit target/dir
-```
+These files stay out of the repo on purpose: sessions, credentials and caches in `~/.claude`, and `cli.json` and `service.json` in `~/.config/opencode`. `service.json` holds a password.
