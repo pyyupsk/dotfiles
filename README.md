@@ -25,10 +25,8 @@ dotfiles/
 │   └── .config/opencode/  config, theme, plugin, skill (no binary/locks)
 ├── ssh/
 │   └── .ssh/           ssh host shortcuts
-├── claude/             package: claude
-│   └── .claude/        settings, style docs, agents, commands, hooks
-└── bin/
-    └── .local/bin/     personal scripts
+└── claude/             package: claude
+    └── .claude/        settings, style docs, agents, commands, hooks
 ```
 
 ## zsh modules
@@ -46,12 +44,6 @@ dotfiles/
 | `70-ai.zsh`         | AI env (non-secret) + oc aliases       |
 | `80-prompt.zsh`     | powerlevel10k theme                    |
 | `90-syntax.zsh`     | syntax highlighting (must load last)   |
-
-## bin
-
-| File                    | Purpose                                                                                  |
-| ----------------------- | ---------------------------------------------------------------------------------------- |
-| `oc-update-whitelist`   | fetch model pricing from models.dev and update opencode's zen whitelist with free models |
 
 ## Local secrets
 
@@ -95,13 +87,12 @@ plugin, impeccable command). Skills live outside repo under
 - `cli.json`, `service.json` (holds password), backups — machine state
 
 Notes: `~/.config/opencode` must pre-exist before stow (same folding trap as
-claude). `oc-update-whitelist` writes through the `opencode.json` symlink, so
-whitelist refreshes show as repo diffs — commit them as chores.
+claude).
 
 ## Install
 
 ```sh
-stow zsh git mise opencode ssh bin shared   # create all symlinks
+stow zsh git mise opencode ssh shared   # create all symlinks
 mkdir -p ~/.claude && stow claude         # claude needs pre-existing dir
 ```
 
