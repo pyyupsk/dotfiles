@@ -18,14 +18,15 @@ This page lists each part of the macOS 27 look and the file that controls it. Us
 
 ## Menu bar and Dock
 
-| Part                                                                     | File                                                        |
-| ------------------------------------------------------------------------ | ----------------------------------------------------------- |
-| Top panel: Apple menu, app menu, Control Center, clock                   | `kde/home/.config/plasma-org.kde.plasma.desktop-appletsrc`  |
-| Control Center (sound, brightness, network, Bluetooth, media, clipboard) | Built from `plasma-packages/plasma-control-center/PKGBUILD` |
-| Clock that opens Notification Center                                     | `plasma-packages/plasmoids/com.pyyupsk.notificationclock/`  |
-| On an empty desktop the Dock shows. With a window open, it hides         | `plasma-packages/kwin/scripts/dock-autohide/`               |
-| Dock apps: Dolphin, Helium, T3 Code, Vesktop, Alacritty                  | `kde/home/.config/plasma-org.kde.plasma.desktop-appletsrc`  |
-| Launchpad hides developer tools                                          | `kde/hidden-apps.txt`                                       |
+| Part                                                                                                                                               | File                                                        |
+| -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| Top panel: Apple menu, app menu, Control Center, clock                                                                                             | `kde/home/.config/plasma-org.kde.plasma.desktop-appletsrc`  |
+| Control Center (sound, brightness, network, Bluetooth, media, clipboard)                                                                           | Built from `plasma-packages/plasma-control-center/PKGBUILD` |
+| Clock that opens Notification Center                                                                                                               | `plasma-packages/plasmoids/com.pyyupsk.notificationclock/`  |
+| On an empty desktop the Dock shows. With a window open, it hides                                                                                   | `plasma-packages/kwin/scripts/dock-autohide/`               |
+| Dock apps: Dolphin, Helium, T3 Code, VS Code, Alacritty, Vesktop, Spotify. Running apps from every desktop show, and a click moves to that desktop | `kde/home/.config/plasma-org.kde.plasma.desktop-appletsrc`  |
+| Thin line between the apps and the Trash                                                                                                           | `plasma-packages/plasmoids/com.pyyupsk.docksep/`            |
+| Launchpad hides developer tools                                                                                                                    | `kde/hidden-apps.txt`                                       |
 
 ## Windows
 

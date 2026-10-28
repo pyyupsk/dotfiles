@@ -11,6 +11,7 @@ symlinks that point outside the package, and falls back to Breeze.
 | `kwin/effects/mac-zoom-anim`                   | Animates maximize and restore in both directions                          |
 | `plasma/look-and-feel/com.pyyupsk.applesplash` | Login splash: Apple logo and progress bar                                 |
 | `plasmoids/com.pyyupsk.notificationclock`      | Menu bar clock that opens Notification Center                             |
+| `plasmoids/com.pyyupsk.docksep`                | Thin line in the Dock between the apps and the Trash                      |
 | `plasma-control-center/PKGBUILD`               | Builds Control Center from `~/.local/src/plasma-control-center`           |
 
 ## Install

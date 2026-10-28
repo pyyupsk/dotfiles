@@ -75,7 +75,6 @@ immutability=1
 plugin=org.kde.plasma.volume
 
 [Containments][183][Applets][211][Applets][218][Configuration][General]
-currentTab=streams
 migrated=true
 
 [Containments][183][Applets][211][Applets][221]
@@ -145,18 +144,19 @@ immutability=1
 plugin=org.kde.mac.tahoe.liquid.icontasks
 
 [Containments][202][Applets][205][Configuration][General]
-launchers=applications:org.kde.dolphin.desktop,applications:helium.desktop,applications:com.t3tools.T3Code.desktop,applications:vesktop.desktop,applications:Alacritty.desktop
+launchers=applications:org.kde.dolphin.desktop,applications:helium.desktop,applications:com.t3tools.T3Code.desktop,applications:com.microsoft.VSCode.desktop,applications:Alacritty.desktop,applications:vesktop.desktop,applications:spotify.desktop
+showOnlyCurrentDesktop=false
 
-[Containments][202][Applets][206]
+[Containments][202][Applets][229]
 immutability=1
-plugin=org.kde.plasma.marginsseparator
+plugin=com.pyyupsk.docksep
 
-[Containments][202][Applets][207]
+[Containments][202][Applets][230]
 immutability=1
 plugin=org.kde.mac-tahoe-liquid-kde.trashcan
 
 [Containments][202][General]
-AppletOrder=203;204;205;206;207
+AppletOrder=203;204;205;229;230
 
 [ScreenMapping]
 itemsOnDisabledScreens=

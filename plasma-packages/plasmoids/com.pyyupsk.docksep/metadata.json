@@ -1,0 +1,14 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [{ "Name": "pyyupsk" }],
+        "Category": "Windows and Tasks",
+        "Description": "Thin vertical line that separates groups in the Dock, like macOS",
+        "Icon": "distribute-horizontal-x",
+        "Id": "com.pyyupsk.docksep",
+        "License": "GPL-3.0",
+        "Name": "Dock Separator",
+        "Version": "1.0"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}
