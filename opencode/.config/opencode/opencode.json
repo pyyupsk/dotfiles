@@ -1,5 +1,12 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "instructions": [
+    "~/dotfiles/shared/source/RTK.md",
+    "~/dotfiles/shared/source/STYLE.md",
+    "~/brain/AGENTS.md",
+    "~/brain/now.md",
+    "~/brain/dates.md"
+  ],
   "plugin": [
     "@dietrichgebert/ponytail",
     "opencode-aipass"
@@ -46,9 +53,6 @@
       "serena": {
         "type": "local",
         "command": [
-          "uvx",
-          "--from",
-          "serena-agent",
           "serena",
           "start-mcp-server",
           "--project-from-cwd",
@@ -79,22 +83,6 @@
         "type": "remote",
         "url": "https://app.openseo.so/mcp"
       }
-    },
-    "serena": {
-      "type": "local",
-      "command": [
-        "uvx",
-        "--from",
-        "serena-agent",
-        "serena",
-        "start-mcp-server",
-        "--project-from-cwd",
-        "--context",
-        "agent",
-        "--open-web-dashboard",
-        "False"
-      ],
-      "enabled": true
     }
   }
 }

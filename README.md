@@ -11,8 +11,8 @@ symlinks every file inside into place.
 dotfiles/
 ├── README.md           this file
 ├── shared/             package: shared — single-source docs (source/RTK.md,
-│                       source/STYLE.md); .claude/ + .config/opencode/ link
-│                       inward so `stow shared` serves both tools
+│                       source/STYLE.md); .claude/ links inward, opencode
+│                       reads source/ through `instructions`
 ├── zsh/                package: zsh
 │   ├── .zshrc          entry point: sources every file in ~/.zshrc.d
 │   ├── .zshrc.d/       one module per concern, numbered for load order
@@ -22,7 +22,7 @@ dotfiles/
 ├── mise/
 │   └── .config/mise/   global tool versions (node, python, rust)
 ├── opencode/            package: opencode
-│   └── .config/opencode/  config, theme, plugin, skill (no binary/locks)
+│   └── .config/opencode/  config, rtk plugin (no binary/locks)
 ├── ssh/
 │   └── .ssh/           ssh host shortcuts
 └── claude/             package: claude
@@ -75,11 +75,11 @@ stow --no-folding shared claude opencode
 
 ## opencode
 
-Ports `~/.config/opencode` personal config (`opencode.json`, theme, rtk
-plugin, impeccable command). Skills live outside repo under
-`~/.agents/skills/` (`impeccable-opencode`), symlinked in. Excluded on purpose:
+Ports `~/.config/opencode` personal config (`opencode.json`, rtk plugin).
+`instructions` in `opencode.json` loads `shared/source/RTK.md`, `STYLE.md`
+and the brain files directly, because opencode does not follow `@` imports.
+Excluded on purpose:
 
-- `skills/` — live in `~/.agents/skills/` (`impeccable-opencode`), symlinked in
 - `bun.lock`, `package-lock.json`, `node_modules` — reinstallable
 - `cli.json`, `service.json` (holds password), backups — machine state
 
