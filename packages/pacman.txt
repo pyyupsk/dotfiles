@@ -6,6 +6,7 @@ base
 base-devel
 bat
 breeze-gtk
+discover
 docker
 docker-compose
 dolphin
