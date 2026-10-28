@@ -1,0 +1,15 @@
+{
+    "KPackageStructure": "KWin/Effect",
+    "KPlugin": {
+        "Authors": [{ "Name": "pyyupsk" }],
+        "Category": "Appearance",
+        "Description": "Smooth zoom when a window changes size by itself (maximize with gaps, restore to 16:9, fullscreen). Replaces Stretch so Mac Zoom resizes animate both ways.",
+        "EnabledByDefault": false,
+        "Id": "mac-zoom-anim",
+        "License": "MIT",
+        "Name": "Mac Zoom Animation"
+    },
+    "X-KDE-Ordering": 60,
+    "X-KWin-Exclusive-Category": "maximize",
+    "X-Plasma-API": "javascript"
+}

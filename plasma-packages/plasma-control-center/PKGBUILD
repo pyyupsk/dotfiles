@@ -1,0 +1,35 @@
+pkgname=plasma-control-center-git
+_pkgname=plasma-control-center
+pkgver=0.1.0.r0.gaa2b406
+pkgrel=1
+pkgdesc='macOS Control Center style System Tray (Plasma applet) for KDE Plasma 6'
+arch=(x86_64)
+url='https://github.com/cesarconte/plasma-control-center'
+license=(GPL-2.0-or-later)
+depends=(
+  plasma-workspace libplasma kirigami kitemmodels ki18n kio kwindowsystem kxmlgui
+  kiconthemes kjobwidgets kservice kconfig kcoreaddons kpackage kstatusnotifieritem
+  qt6-base qt6-declarative
+)
+makedepends=(git cmake extra-cmake-modules)
+provides=(plasma-control-center)
+conflicts=(plasma-control-center)
+source=("plasma-control-center::git+file://$HOME/.local/src/plasma-control-center")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgname"
+  printf '%s' "$(git describe --long --tags --abbrev=7 2>/dev/null | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g' \
+    || printf '0.1.0.r%s.g%s' "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)")"
+}
+
+build() {
+  cmake -S "$_pkgname" -B build -G "Unix Makefiles" \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr
+  cmake --build build -j8
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+}

@@ -1,0 +1,25 @@
+{
+    "KPlugin": {
+        "Id": "com.pyyupsk.notificationclock",
+        "Name": "Notification Clock",
+        "Description": "macOS 27 menu bar clock: shows the date and time, click opens Notification Center (based on Orla Notifications, MIT).",
+        "Icon": "preferences-desktop-notification-bell",
+        "Category": "Tasks",
+        "Version": "0.1.0",
+        "License": "MIT",
+        "Authors": [
+            {
+                "Name": "Caio Barbieri",
+                "Website": "https://github.com/caiolombello"
+            }
+        ],
+        "Website": "https://github.com/caiolombello/orla-desktop",
+        "BugReportUrl": "https://github.com/caiolombello/orla-desktop/issues",
+        "FormFactors": [
+            "desktop"
+        ]
+    },
+    "KPackageStructure": "Plasma/Applet",
+    "X-KDE-ParentApp": "org.kde.plasmashell",
+    "X-Plasma-API-Minimum-Version": "6.7"
+}

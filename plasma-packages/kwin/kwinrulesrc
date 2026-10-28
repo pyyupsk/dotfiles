@@ -1,0 +1,30 @@
+[General]
+Order=spotify,vesktop,helium,t3code
+
+[helium]
+Description=Helium opens on desktop 3
+desktops=b94835ed-b85b-4916-a6b2-7f080c57d2bc
+desktopsrule=3
+wmclass=helium
+wmclassmatch=1
+
+[spotify]
+Description=Spotify opens on desktop 1
+desktops=e4b2735e-813d-4f34-8eee-a484f785d65e
+desktopsrule=3
+wmclass=[Ss]potify
+wmclassmatch=3
+
+[t3code]
+Description=T3 Code opens on desktop 4
+desktops=4dc7f3e6-ec08-40a2-8819-dd00663dbf20
+desktopsrule=3
+wmclass=com.t3tools.T3Code
+wmclassmatch=1
+
+[vesktop]
+Description=Vesktop opens on desktop 2
+desktops=81451087-cab9-4d85-972f-7769a7900839
+desktopsrule=3
+wmclass=vesktop
+wmclassmatch=1

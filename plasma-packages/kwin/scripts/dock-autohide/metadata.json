@@ -1,0 +1,12 @@
+{
+    "KPlugin": {
+        "Authors": [{ "Name": "pyyupsk" }],
+        "Description": "The bottom Dock stays visible on an empty desktop and auto-hides when the desktop has a window.",
+        "EnabledByDefault": true,
+        "Id": "dock-autohide",
+        "License": "MIT",
+        "Name": "Dock Autohide"
+    },
+    "KPackageStructure": "KWin/Script",
+    "X-Plasma-API": "javascript"
+}

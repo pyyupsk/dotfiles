@@ -1,0 +1,12 @@
+{
+    "KPlugin": {
+        "Authors": [{ "Name": "pyyupsk" }],
+        "Description": "Maximize keeps a gap from the screen edges (rounded corners stay visible); restoring centers the window at 16:9.",
+        "EnabledByDefault": true,
+        "Id": "mac-zoom",
+        "License": "MIT",
+        "Name": "Mac Zoom"
+    },
+    "KPackageStructure": "KWin/Script",
+    "X-Plasma-API": "javascript"
+}

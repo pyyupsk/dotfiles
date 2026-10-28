@@ -1,0 +1,12 @@
+{
+    "KPackageStructure": "Plasma/LookAndFeel",
+    "KPlugin": {
+        "Authors": [ { "Name": "pyyupsk" } ],
+        "Description": "Splash screen only: Apple logo and progress bar on black, same size as the Plymouth boot splash.",
+        "Id": "com.pyyupsk.applesplash",
+        "License": "GPL-2.0-or-later",
+        "Name": "Apple Boot",
+        "Version": "1.0"
+    },
+    "X-Plasma-APIVersion": "2"
+}
