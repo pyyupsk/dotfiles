@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=T3 Code
+Exec=/home/pyyupsk/Applications/T3-Code.AppImage --no-sandbox %U
+Icon=t3code
+Terminal=false
+Categories=Development;
