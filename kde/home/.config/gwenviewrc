@@ -1,8 +1,13 @@
 [General]
 LastUsedVersion=210800
 
-[MainWindow][Toolbar mainToolBar]
-ToolButtonStyle=IconOnly
+[ImageView]
+ThumbnailSplitterSizes=504,144
+
+[Recent Files]
+File1[$e]=/usr/local
+Name1[$e]=local
 
 [SideBar]
-InformationSplitterSizes=0,0
+InformationSplitterSizes=301,333
+SideBarSplitterSizes=200,1173

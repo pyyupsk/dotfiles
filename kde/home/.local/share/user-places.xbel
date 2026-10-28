@@ -35,6 +35,7 @@
    </metadata>
    <metadata owner="http://www.kde.org">
     <ID>1793170000/1</ID>
+    <IsHidden>true</IsHidden>
    </metadata>
   </info>
  </bookmark>
@@ -46,6 +47,19 @@
    </metadata>
    <metadata owner="http://www.kde.org">
     <ID>1793156339/1</ID>
+    <isSystemItem>true</isSystemItem>
+    <IsHidden>true</IsHidden>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/pyyupsk">
+  <title>Home</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="user-home"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1793156339/0</ID>
     <isSystemItem>true</isSystemItem>
    </metadata>
   </info>
@@ -59,30 +73,7 @@
    <metadata owner="http://www.kde.org">
     <ID>1793156339/2</ID>
     <isSystemItem>true</isSystemItem>
-   </metadata>
-  </info>
- </bookmark>
- <bookmark href="file:///home/pyyupsk/Downloads">
-  <title>Downloads</title>
-  <info>
-   <metadata owner="http://freedesktop.org">
-    <bookmark:icon name="folder-downloads"/>
-   </metadata>
-   <metadata owner="http://www.kde.org">
-    <ID>1793156339/3</ID>
-    <isSystemItem>true</isSystemItem>
-   </metadata>
-  </info>
- </bookmark>
- <bookmark href="file:///home/pyyupsk">
-  <title>Home</title>
-  <info>
-   <metadata owner="http://freedesktop.org">
-    <bookmark:icon name="user-home"/>
-   </metadata>
-   <metadata owner="http://www.kde.org">
-    <ID>1793156339/0</ID>
-    <isSystemItem>true</isSystemItem>
+    <IsHidden>true</IsHidden>
    </metadata>
   </info>
  </bookmark>
@@ -106,7 +97,7 @@
     <bookmark:icon name="folder-pictures"/>
    </metadata>
    <metadata owner="http://www.kde.org">
-    <IsHidden>true</IsHidden>
+    <IsHidden>false</IsHidden>
     <ID>1793156339/7</ID>
     <isSystemItem>true</isSystemItem>
    </metadata>
@@ -119,8 +110,20 @@
     <bookmark:icon name="folder-videos"/>
    </metadata>
    <metadata owner="http://www.kde.org">
-    <IsHidden>true</IsHidden>
+    <IsHidden>false</IsHidden>
     <ID>1793156339/8</ID>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/pyyupsk/Downloads">
+  <title>Downloads</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-downloads"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1793156339/3</ID>
     <isSystemItem>true</isSystemItem>
    </metadata>
   </info>
@@ -169,6 +172,7 @@
     <UDI>/org/freedesktop/UDisks2/block_devices/nvme0n1p6</UDI>
     <isSystemItem>true</isSystemItem>
     <IsHidden>true</IsHidden>
+    <uuid>1c26-000d</uuid>
    </metadata>
   </info>
  </separator>
@@ -178,6 +182,34 @@
     <UDI>/org/freedesktop/UDisks2/block_devices/nvme0n1p7</UDI>
     <isSystemItem>true</isSystemItem>
     <IsHidden>true</IsHidden>
+    <uuid>ba2b-b093</uuid>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/freedesktop/UDisks2/block_devices/nvme0n1p3</UDI>
+    <isSystemItem>true</isSystemItem>
+    <uuid>46e2df48e2df3b3f</uuid>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/freedesktop/UDisks2/block_devices/nvme0n1p5</UDI>
+    <isSystemItem>true</isSystemItem>
+    <uuid>01dd40e312d696f0</uuid>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/freedesktop/UDisks2/block_devices/nvme0n1p8</UDI>
+    <isSystemItem>true</isSystemItem>
+    <uuid>982cc2a2-8fa9-41f3-85ec-9121b17b9ce4</uuid>
    </metadata>
   </info>
  </separator>

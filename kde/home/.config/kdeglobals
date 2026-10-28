@@ -133,6 +133,7 @@ ForegroundPositive=39,174,96
 ForegroundVisited=120,120,120
 
 [General]
+BrowserApplication=helium.desktop
 ColorScheme=MacTahoeLiquidKdeDark
 ColorSchemeHash=c09048c18bb09b0191bed42127b2c9dabfa9a5a3
 fixed=SF Mono,10,-1,5,50,0,0,0,0,0

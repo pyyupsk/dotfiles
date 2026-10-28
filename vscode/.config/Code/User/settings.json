@@ -47,6 +47,7 @@
   "editor.fontLigatures": true,
   "editor.lineHeight": 1.5,
   "editor.multiCursorModifier": "ctrlCmd",
+  "editor.selectionClipboard": false,
   "editor.cursorStyle": "line",
   "editor.cursorBlinking": "phase",
   "editor.cursorSmoothCaretAnimation": "on",

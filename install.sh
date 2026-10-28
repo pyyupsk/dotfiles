@@ -10,6 +10,8 @@ STEPS=(check packages stow system fonts wallpaper theme plasma kde apps)
 
 THEME_REPO=https://github.com/lestercorderomurillo/macos-tahoe-liquid-kde
 THEME_TAG=v0.61.8
+# The installer's GUI choices, passed to its unattended backend (see docs/install.md)
+THEME_CHOICES='{"appearance":"dark","icons":"regular","color":"blue","wallpaper":"golden","launcher":"golden","panel":true,"dock":true,"reset_layout":true,"acrylic_glass":true,"rounded_corners":true,"shadows":"medium","fonts":true,"firefox":false,"window_controls":"glassy","files":"dolphin","nautilus_bookmarks":false,"plymouth":true,"oled_care":false}'
 PCC_REPO=https://github.com/cesarconte/plasma-control-center
 PCC_COMMIT=3f48fc3  # the upstream commit this setup was built and tested on
 WALLPAPER_URL=https://media.512pixels.net/downloads/macos-wallpapers-6k/27-Golden-Gate-Dark.png
@@ -89,9 +91,10 @@ step_theme() {
   say "macOS Tahoe Liquid KDE theme ($THEME_TAG)"
   local src=~/.local/src/macos-tahoe-liquid-kde
   [[ -d $src ]] || git clone --branch "$THEME_TAG" "$THEME_REPO" "$src"
-  echo "    The installer opens a window. Pick the choices listed in docs/install.md."
-  (cd "$src" && ./install)
+  (cd "$src" && sudo ./src/scripts/installer_backend.py install --wizard-options "$THEME_CHOICES")
   systemctl --user disable --now mac-tahoe-liquid-kde-theme.timer 2>/dev/null || true
+  # the theme adds the Plymouth logo; rebuild so the boot splash shows it
+  sudo mkinitcpio -P
 }
 
 step_plasma() {

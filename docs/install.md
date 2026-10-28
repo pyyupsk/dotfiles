@@ -44,7 +44,7 @@ cd ~/dotfiles
 ./install.sh theme plasma apps
 ```
 
-The `theme` step opens the macos-tahoe-liquid-kde installer window. Pick these choices:
+The `theme` step installs macos-tahoe-liquid-kde without its window, through the unattended backend. It passes these choices (`THEME_CHOICES` in `install.sh`), then rebuilds the initramfs so that the boot splash shows the Apple logo:
 
 | Choice                         | Value                            |
 | ------------------------------ | -------------------------------- |

@@ -1,10 +1,25 @@
 [General]
-Order=steam,spotify,vesktop,helium,t3code
+Order=steam,spotify,vesktop,helium,t3code,pip
 
 [helium]
 Description=Helium opens on desktop 3
 desktops=b94835ed-b85b-4916-a6b2-7f080c57d2bc
 desktopsrule=3
+wmclass=helium
+wmclassmatch=1
+
+[pip]
+Description=Picture in picture stays on top, on every desktop
+above=true
+aboverule=2
+desktops=
+desktopsrule=2
+skipswitcher=true
+skipswitcherrule=2
+skiptaskbar=true
+skiptaskbarrule=2
+title=Picture in picture
+titlematch=1
 wmclass=helium
 wmclassmatch=1
 
