@@ -7,40 +7,31 @@
     "~/brain/now.md",
     "~/brain/dates.md"
   ],
-  "plugin": [
-    "@dietrichgebert/ponytail",
-    "opencode-aipass"
+  "plugins": [
+    "@dietrichgebert/ponytail"
   ],
   "lsp": true,
-  "enabled_providers": [
-    "opencode",
-    "opencode-go",
-    "9arm",
-    "aipass"
+  "policies": [
+    {
+      "action": "provider.use",
+      "resource": "*",
+      "effect": "deny"
+    },
+    {
+      "action": "provider.use",
+      "resource": "opencode",
+      "effect": "allow"
+    },
+    {
+      "action": "provider.use",
+      "resource": "opencode-go",
+      "effect": "allow"
+    }
   ],
   "model": "opencode-go/deepseek-v4.1-flash",
-  "small_model": "opencode/mimo-v2.6-flash-free",
-  "provider": {
-    "9arm": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "9arm Gateway",
-      "options": {
-        "baseURL": "https://gateway.9arm.co/v1",
-        "apiKey": "{env:NINEARM_API_KEY}"
-      },
-      "models": {
-        "qwen3.8-27b-fp8": {
-          "name": "Qwen3.8 27B FP8"
-        }
-      }
-    }
-  },
-  "agent": {
-    "build": {
-      "model": "opencode-go/deepseek-v4.1-flash"
-    },
-    "plan": {
-      "model": "opencode-go/deepseek-v4.1-flash"
+  "agents": {
+    "title": {
+      "model": "opencode/mimo-v2.6-flash-free"
     }
   },
   "mcp": {
@@ -62,26 +53,6 @@
           "False"
         ],
         "disabled": false
-      },
-      "chrome-devtools": {
-        "type": "local",
-        "command": [
-          "/home/pyyupsk/.local/bin/helium-devtools-mcp",
-          "--no-usage-statistics",
-          "--no-performance-crux"
-        ],
-        "disabled": false,
-        "timeout": {
-          "startup": 60000,
-          "catalog": 60000
-        },
-        "environment": {
-          "CHROME_DEVTOOLS_MCP_NO_UPDATE_CHECKS": "1"
-        }
-      },
-      "openseo": {
-        "type": "remote",
-        "url": "https://app.openseo.so/mcp"
       }
     }
   }
