@@ -1,4 +1,3 @@
-# Never commit secrets or keys
 *.key
 *.pem
 allowed_signers
@@ -6,6 +5,4 @@ id_rsa
 id_ed25519
 .zshrc.local
 
-# Local editor files
 *.swp
-.DS_Store
