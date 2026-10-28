@@ -144,7 +144,7 @@ immutability=1
 plugin=org.kde.mac.tahoe.liquid.icontasks
 
 [Containments][202][Applets][205][Configuration][General]
-launchers=applications:org.kde.dolphin.desktop,applications:helium.desktop,applications:com.t3tools.T3Code.desktop,applications:com.microsoft.VSCode.desktop,applications:Alacritty.desktop,applications:vesktop.desktop,applications:spotify.desktop
+launchers=applications:org.kde.dolphin.desktop,applications:spotify.desktop,applications:vesktop.desktop,applications:helium.desktop,applications:com.t3tools.T3Code.desktop,applications:com.microsoft.VSCode.desktop,applications:Alacritty.desktop
 showOnlyCurrentDesktop=false
 
 [Containments][202][Applets][229]
@@ -157,6 +157,17 @@ plugin=org.kde.mac-tahoe-liquid-kde.trashcan
 
 [Containments][202][General]
 AppletOrder=203;204;205;229;230
+
+[Containments][231]
+ItemGeometries-1920x1080=
+ItemGeometriesHorizontal=
+activityId=9a7a5692-582f-4208-8288-2b95f4c162cd
+formfactor=0
+immutability=1
+lastScreen=1
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=org.kde.image
 
 [ScreenMapping]
 itemsOnDisabledScreens=

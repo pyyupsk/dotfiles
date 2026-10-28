@@ -45,3 +45,6 @@
 .config/xsettingsd/xsettingsd.conf
 .gtkrc-2.0
 .local/share/user-places.xbel
+.config/obs-studio/basic/profiles/Untitled/basic.ini
+.config/obs-studio/basic/profiles/Untitled/recordEncoder.json
+.config/obs-studio/basic/scenes/Untitled.json

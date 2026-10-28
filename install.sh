@@ -197,6 +197,13 @@ step_check() {
       grep -q '^NoDisplay=true' ~/.local/share/applications/"$name" || return 1
     done
   }
+  # kde/save.sh drops recent-file lines, so ignore them here too
+  kde_same() {
+    local f skip='^(LastPlayedFile|lastImageSaveLocation|lastVideoSaveLocation)='
+    while IFS= read -r -d '' f; do
+      cmp -s <(grep -v -E "$skip" "$DOT/kde/home/$f") <(grep -v -E "$skip" "$HOME/$f" 2>/dev/null) || return 1
+    done < <(cd "$DOT/kde/home" && find . -type f -print0)
+  }
   has_apps() {
     command -v claude && command -v serena && command -v spicetify &&
       [[ -x ~/.opencode/bin/opencode && -x ~/Applications/T3-Code.AppImage ]]
@@ -216,7 +223,7 @@ step_check() {
   mark "notification clock"      same_tree "$DOT/plasma-packages/plasmoids" ~/.local/share/plasma/plasmoids
   mark "Control Center"          pacman -Q plasma-control-center-git
   mark "hidden apps"             apps_hidden
-  mark "kde settings"            same_tree "$DOT/kde/home" "$HOME"
+  mark "kde settings"            kde_same
   mark "apps"                    has_apps
 }
 

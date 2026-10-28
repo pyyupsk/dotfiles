@@ -6,6 +6,7 @@ base
 base-devel
 bat
 breeze-gtk
+btop
 discover
 docker
 docker-compose
@@ -37,6 +38,7 @@ noto-fonts-emoji
 ntfs-3g
 nvidia-open
 nvidia-utils
+obs-studio
 openssh
 pacman-contrib
 pipewire

@@ -1,0 +1,1 @@
+{"rate_control": "CQP", "cqp": 20, "preset2": "p5", "tune": "hq", "multipass": "qres", "profile": "high", "bf": 2, "lookahead": false}

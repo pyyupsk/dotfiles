@@ -79,4 +79,5 @@ All shortcuts are in `kde/home/.config/kglobalshortcutsrc`, except the launcher.
 | Claude Code     | rtk and Serena hooks, plugins, Serena MCP                                                      | `claude/`, `install.sh` (apps step)                                    |
 | opencode        | Rules from `claude/.claude/RTK.md` and `STYLE.md`                                              | `opencode/`                                                            |
 | Spotify         | Spicetify with Marketplace                                                                     | `install.sh` (apps step)                                               |
+| Screen recording | Spectacle (Meta+Shift+R, Meta+Alt+R, Meta+Ctrl+R) saves MP4 H.264. OBS: 1080p 60fps NVENC, Hybrid MP4, tracks 1 mix, 2 desktop, 3 mic, 30 s replay buffer | `kde/home/.config/spectaclerc`, `kde/home/.config/obs-studio/` |
 | Input languages | English and Thai, shown as A and ก                                                             | `kde/home/.config/kxkbrc`                                              |
