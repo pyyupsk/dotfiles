@@ -1,0 +1,9 @@
+1password
+apple_cursor
+helium-browser-bin
+rtk-bin
+spicetify-bin
+spotify
+vesktop-bin
+visual-studio-code-bin
+zsh-theme-powerlevel10k
