@@ -60,7 +60,9 @@
     "typescript-lsp@claude-plugins-official": true,
     "simple-english@simple-english": true,
     "watch@claude-video": true,
-    "claude-code-setup@claude-plugins-official": true
+    "claude-code-setup@claude-plugins-official": true,
+    "vercel@claude-plugins-official": true,
+    "cloudflare@cloudflare": true
   },
   "extraKnownMarketplaces": {
     "ponytail": {
@@ -79,6 +81,12 @@
       "source": {
         "source": "github",
         "repo": "bradautomates/claude-video"
+      }
+    },
+    "cloudflare": {
+      "source": {
+        "source": "github",
+        "repo": "cloudflare/skills"
       }
     }
   },
