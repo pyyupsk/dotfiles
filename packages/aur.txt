@@ -1,6 +1,9 @@
 1password
 apple_cursor
 helium-browser-bin
+openrazer-daemon-git
+openrazer-driver-dkms-git
+python-openrazer-git
 rtk-bin
 spicetify-bin
 spotify

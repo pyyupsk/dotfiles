@@ -60,6 +60,9 @@ step_system() {
 
   sudo systemctl enable sddm NetworkManager tailscaled fstrim.timer paccache.timer \
     nvidia-suspend nvidia-resume nvidia-hibernate
+  # OpenRazer: plugdev may use the mouse, the daemon restores DPI at login
+  sudo gpasswd -a "$USER" plugdev
+  systemctl --user enable openrazer-daemon.service
 }
 
 step_fonts() {

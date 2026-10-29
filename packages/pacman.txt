@@ -8,6 +8,7 @@ bat
 breeze-gtk
 btop
 discover
+dkms
 docker
 docker-compose
 dolphin
@@ -29,6 +30,7 @@ libdbusmenu-glib
 libnotify
 linux
 linux-firmware
+linux-headers
 mise
 mkinitcpio
 networkmanager
