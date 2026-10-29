@@ -2,6 +2,15 @@
 
 Configuration for an Arch Linux machine with KDE Plasma 6 that looks and works like macOS 27 Golden Gate, dark mode only.
 
+![Desktop with the menu bar and the Dock](docs/screenshots/desktop.webp)
+
+| | |
+| --- | --- |
+| ![Dolphin as Finder](docs/screenshots/finder.webp) | ![Launchpad](docs/screenshots/launchpad.webp) |
+| ![Alacritty](docs/screenshots/terminal.webp) | ![Control Center](docs/screenshots/control-center.webp) |
+| ![Login screen](docs/screenshots/login.webp) | ![Lock screen](docs/screenshots/lock.webp) |
+| ![Restart alert](docs/screenshots/restart.webp) | |
+
 - To set up a new machine, read [docs/install.md](docs/install.md).
 - To learn which file controls which part of the desktop, read [docs/desktop.md](docs/desktop.md).
 
@@ -25,7 +34,7 @@ Folders of three kinds live here. Stow packages are linked into `$HOME`. Copied 
 | `plasma-packages/` | copied           | KWin scripts, KWin effect, login splash, menu bar clock, Control Center PKGBUILD                             |
 | `system/`          | copied with sudo | Boot splash configuration and the SDDM login screen                                                          |
 | `packages/`        | list             | Packages from the Arch repos and the AUR                                                                     |
-| `docs/`            | docs             | Install guide and desktop reference                                                                          |
+| `docs/`            | docs             | Install guide, desktop reference and screenshots                                                             |
 
 ## install.sh
 
