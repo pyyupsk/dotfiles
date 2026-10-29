@@ -3,6 +3,7 @@ apple_cursor
 helium-browser-bin
 openrazer-daemon-git
 openrazer-driver-dkms-git
+polychromatic
 python-openrazer-git
 rtk-bin
 spicetify-bin
