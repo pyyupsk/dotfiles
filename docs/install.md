@@ -41,7 +41,7 @@ Log in. The desktop still looks like plain KDE at this point.
 
 ```sh
 cd ~/dotfiles
-./install.sh theme plasma apps
+./install.sh theme plasma boot apps
 ```
 
 The `theme` step installs macos-tahoe-liquid-kde without its window, through the unattended backend. It passes these choices (`THEME_CHOICES` in `install.sh`), then rebuilds the initramfs so that the boot splash shows the Apple logo:
@@ -64,6 +64,8 @@ The `theme` step installs macos-tahoe-liquid-kde without its window, through the
 | OLED care                      | Off                              |
 
 The `plasma` step installs the KWin scripts, the login splash, the menu bar clock, and builds Control Center.
+
+The `boot` step installs the rEFInd boot picker and makes it the first boot entry. It draws the theme from the wallpaper, the theme icons and SF Pro, so it runs after those steps. If Secure Boot keys from sbctl exist, it signs rEFInd. systemd-boot stays installed as a fallback in the firmware boot menu.
 
 The `apps` step installs the developer tools, VS Code extensions, T3 Code and Spicetify. When it asks, open Spotify, log in, close Spotify, then press Enter.
 

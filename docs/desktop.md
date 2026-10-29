@@ -4,17 +4,18 @@ This page lists each part of the macOS 27 look and the file that controls it. Us
 
 ## Look
 
-| Part                                                                      | Source                                                                            | File in this repo                                                     |
-| ------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| Global theme, colors, window buttons, icons, cursor, sounds, Kvantum, GTK | macos-tahoe-liquid-kde v0.61.8, Golden Gate edition                               | Installer choices in `docs/install.md`                                |
-| Dark mode only                                                            | Light and dark both point to the dark theme, and the switch timer is off          | `kde/home/.config/kdeglobals`, `install.sh` (theme step)              |
-| Fonts                                                                     | SF Pro Text for the UI, JetBrainsMono Nerd Font for code, Noto Sans Thai for Thai | `fontconfig/`, `kde/home/.config/kdeglobals`                          |
-| Desktop wallpaper                                                         | MacGoldenGate, installed by the theme                                             | `kde/home/.config/plasma-org.kde.plasma.desktop-appletsrc`            |
-| Lock screen                                                               | Breeze, with the Golden Gate Dark wallpaper                                       | `kde/home/.config/kscreenlockerrc`                                    |
-| Boot splash                                                               | Plymouth theme MacTahoeLiquidKde, NVIDIA loads early                              | `system/etc/mkinitcpio.conf.d/`                                       |
-| Login screen                                                              | Our own SDDM theme GoldenGate                                                     | `system/usr/share/sddm/themes/GoldenGate/`, `system/etc/sddm.conf.d/` |
-| Splash after login                                                        | Apple logo and progress bar, same size as the boot splash                         | `plasma-packages/plasma/look-and-feel/com.pyyupsk.applesplash/`       |
-| Control Center icon                                                       | Two toggles, like macOS                                                           | `icons/`                                                              |
+| Part                                                                      | Source                                                                                                                 | File in this repo                                                     |
+| ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Global theme, colors, window buttons, icons, cursor, sounds, Kvantum, GTK | macos-tahoe-liquid-kde v0.61.8, Golden Gate edition                                                                    | Installer choices in `docs/install.md`                                |
+| Dark mode only                                                            | Light and dark both point to the dark theme, and the switch timer is off                                               | `kde/home/.config/kdeglobals`, `install.sh` (theme step)              |
+| Fonts                                                                     | SF Pro Text for the UI, JetBrainsMono Nerd Font for code, Noto Sans Thai for Thai                                      | `fontconfig/`, `kde/home/.config/kdeglobals`                          |
+| Desktop wallpaper                                                         | MacGoldenGate, installed by the theme                                                                                  | `kde/home/.config/plasma-org.kde.plasma.desktop-appletsrc`            |
+| Lock screen                                                               | Breeze, with the Golden Gate Dark wallpaper                                                                            | `kde/home/.config/kscreenlockerrc`                                    |
+| Boot picker                                                               | rEFInd: Arch Linux and Windows as macOS icons on the blurred Golden Gate wallpaper, 5 seconds, firmware settings below | `refind/`, `install.sh` (boot step)                                   |
+| Boot splash                                                               | Plymouth theme MacTahoeLiquidKde, NVIDIA loads early                                                                   | `system/etc/mkinitcpio.conf.d/`                                       |
+| Login screen                                                              | Our own SDDM theme GoldenGate                                                                                          | `system/usr/share/sddm/themes/GoldenGate/`, `system/etc/sddm.conf.d/` |
+| Splash after login                                                        | Apple logo and progress bar, same size as the boot splash                                                              | `plasma-packages/plasma/look-and-feel/com.pyyupsk.applesplash/`       |
+| Control Center icon                                                       | Two toggles, like macOS                                                                                                | `icons/`                                                              |
 
 ## Menu bar and Dock
 

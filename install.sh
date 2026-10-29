@@ -6,7 +6,7 @@
 set -euo pipefail
 
 DOT="$(cd "$(dirname "$0")" && pwd)"
-STEPS=(check packages stow system fonts wallpaper theme plasma kde apps)
+STEPS=(check packages stow system fonts wallpaper theme plasma boot kde apps)
 
 THEME_REPO=https://github.com/lestercorderomurillo/macos-tahoe-liquid-kde
 THEME_TAG=v0.61.8
@@ -137,6 +137,32 @@ hide_apps() {
   done
 }
 
+step_boot() {
+  say "rEFInd boot picker with the Golden Gate theme"
+  local esp=/boot/EFI/refind tmp opts src
+  tmp=$(mktemp -d)
+  python3 -I "$DOT/refind/make-theme.py" "$tmp/theme"
+  opts=$(sed 's/initrd=[^ ]* *//g' /proc/cmdline)
+  sudo install -Dm644 /usr/share/refind/refind_x64.efi "$esp/refind_x64.efi"
+  sudo install -Dm644 -t "$esp/themes/golden-gate" "$tmp"/theme/*
+  sudo cp -r /usr/share/refind/icons "$esp/"  # fallback for any icon the theme lacks
+  sed "s|@OPTIONS@|$opts|" "$DOT/refind/refind.conf" | sudo tee "$esp/refind.conf" >/dev/null
+  rm -rf "$tmp"
+  local f path
+  for f in $(grep -oE '(themes|/)[A-Za-z0-9_./-]+\.(png|efi|img)|/vmlinuz-[a-z]+' "$DOT/refind/refind.conf" | sort -u) \
+    themes/golden-gate/func_firmware.png; do
+    [[ $f == /* ]] && path=/boot$f || path=$esp/$f
+    sudo test -f "$path" || { echo "missing: $path" >&2; return 1; }
+  done
+  # with Secure Boot keys from sbctl, sign rEFInd so the firmware runs it
+  if sudo test -d /var/lib/sbctl/keys; then sudo sbctl sign -s "$esp/refind_x64.efi"; fi
+  if ! efibootmgr | grep -q rEFInd; then
+    src=$(findmnt -no SOURCE /boot)
+    sudo efibootmgr -q --create --disk "/dev/$(lsblk -no PKNAME "$src")" \
+      --part "$(cat "/sys/class/block/${src##*/}/partition")" --loader '\EFI\refind\refind_x64.efi' --label rEFInd
+  fi
+}
+
 step_kde() {
   say "KDE settings (panels, shortcuts, window rules, Dolphin, splash)"
   "$DOT/kde/apply.sh"
@@ -225,6 +251,7 @@ step_check() {
   mark "splash and widgets"      same_tree "$DOT/plasma-packages/plasma" ~/.local/share/plasma
   mark "notification clock"      same_tree "$DOT/plasma-packages/plasmoids" ~/.local/share/plasma/plasmoids
   mark "Control Center"          pacman -Q plasma-control-center-git
+  mark "boot picker"             sh -c "efibootmgr | grep -q rEFInd"
   mark "hidden apps"             apps_hidden
   mark "kde settings"            kde_same
   mark "apps"                    has_apps
@@ -242,7 +269,7 @@ Usage: ./install.sh <step>...   (steps: ${STEPS[*]})
 
 1. From a TTY, before the first login:  ./install.sh packages stow system fonts wallpaper
    Then reboot and log in to Plasma.
-2. In Plasma:                           ./install.sh theme plasma apps
+2. In Plasma:                           ./install.sh theme plasma boot apps
    Then log out and switch to a TTY (Ctrl+Alt+F3).
 3. From the TTY:                        ./install.sh kde
    Then log in again.

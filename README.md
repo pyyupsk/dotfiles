@@ -35,7 +35,7 @@ Folders of three kinds live here. Stow packages are linked into `$HOME`. Copied 
 ./install.sh fonts      # run one step; every step is safe to run again
 ```
 
-The steps are `packages`, `stow`, `system`, `fonts`, `wallpaper`, `theme`, `plasma`, `kde` and `apps`. [docs/install.md](docs/install.md) gives the order.
+The steps are `packages`, `stow`, `system`, `fonts`, `wallpaper`, `theme`, `plasma`, `boot`, `kde` and `apps`. [docs/install.md](docs/install.md) gives the order.
 
 ## Stow
 

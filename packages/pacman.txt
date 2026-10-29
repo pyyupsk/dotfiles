@@ -57,6 +57,7 @@ python-gobject
 python-pillow
 python-pyqt6
 qt6-wayland
+refind
 rtkit
 sbctl
 sddm
