@@ -51,6 +51,8 @@ step_system() {
   say "System files: Plymouth, SDDM login screen, boot options, services"
   sudo cp -r "$DOT/system/etc/." /etc/
   sudo cp -r "$DOT/system/usr/." /usr/
+  sudo install -m644 /usr/local/share/plasma-logout/Logout.qml \
+    /usr/share/plasma/shells/org.kde.plasma.desktop/contents/logout/Logout.qml
   sudo mkinitcpio -P
 
   local opts="quiet splash loglevel=3 rd.udev.log_level=3 vt.global_cursor_default=0"

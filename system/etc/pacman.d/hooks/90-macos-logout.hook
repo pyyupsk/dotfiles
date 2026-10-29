@@ -1,0 +1,11 @@
+# plasma-desktop updates overwrite the logout screen; put the macOS alert back
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = plasma-desktop
+
+[Action]
+Description = Installing the macOS style logout alert...
+When = PostTransaction
+Exec = /usr/bin/install -m644 /usr/local/share/plasma-logout/Logout.qml /usr/share/plasma/shells/org.kde.plasma.desktop/contents/logout/Logout.qml
